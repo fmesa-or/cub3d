@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 11:46:16 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/08/13 17:53:44 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/08/13 21:48:30 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ void	sfree_all(void)
 
 int	sopen(const char *file, int oflag, int perm)
 {
-	t_data	*data;
+	t_data	*data; //fix
 	int		fd;
 
-	data = get_pdata(NULL);
+	data = get_pdata(NULL); //fix
 	if (!data)
 		return (-1);
 	fd = -1;

@@ -1,1 +1,82 @@
-Get an idea for the workfloww of the proyect, we have 10 days!
+Crash plan to ship a Cub3D MVP fast
+Scope: mandatory part only, clean structure, no leaks. Target: 8–12 focused hours (split across 2–3 sessions if needed). I’ll help with any step you pick next.
+
+0) Pre-flight (30–60 min)
+Create repo skeleton: src/, include/, assets/, maps/.
+
+Get minilibx building on your machine; link flags (usually -lmlx -lm -lXext -lX11 on Linux, or proper flags on macOS).
+
+Tiny sanity app: open window, fill background, handle ESC and window close.
+Deliverable: window opens and exits cleanly; valgrind clean (or leaks tool on macOS).
+
+1) Config & map parsing (60–90 min)
+Read .cub file line by line. Expected keys: NO/SO/WE/EA texture paths, F & C RGB colors, then the map.
+
+Normalize & store in a t_game struct: textures, colors, char **map.
+
+Validate: one (and only one) spawn (N/S/E/W), allowed chars (0,1,space), all keys present.
+Deliverable: on --check, print parsed settings; on bad input, clear error with message and free everything.
+
+2) Map closure check (30–45 min)
+Flood-fill or boundary check: ensure all walkable cells are enclosed by walls (no leaks at edges).
+Deliverable: reject maps with leaks; accept valid ones.
+
+3) Player setup (15–30 min)
+From spawn: set pos, dir (unit vector), and plane (FOV ≈ 66°, e.g., plane = (0.66, 0) when facing north).
+Deliverable: debug print of vectors; tiny dot on a 2D minimap (optional).
+
+4) Raycasting core (90–120 min)
+Per screen column: compute ray direction, DDA to hit first wall, perpendicular distance, projected wall height.
+
+Draw vertical stripe (solid color first).
+Deliverable: you can “walk” a gray-walled maze with no textures yet.
+
+5) Texturing (60–90 min)
+Load XPM textures via MLX.
+
+For each hit: compute wall_x, texture x, step through y with a texture step; sample and draw.
+
+Correct for orientation (NO/SO/WE/EA).
+Deliverable: textured walls with correct facing.
+
+6) Controls & collision (45–75 min)
+WASD (forward/back/strafe), left/right rotate. Use delta-time for smoothness.
+
+Collision: attempt move, then clamp if next cell is wall.
+Deliverable: smooth movement; can’t clip through walls.
+
+7) Floor & ceiling (15–30 min)
+Fill background with parsed F and C colors before wall pass.
+Deliverable: proper sky/floor colors.
+
+8) Errors, cleanup, and exit (30–45 min)
+Centralized panic() that frees textures, map, MLX images/window, then exits with message.
+
+Handle red-X window close.
+Deliverable: no leaks on normal and error exits.
+
+9) Polishing pass (optional, 30–60 min)
+Clamp FPS or simple frame timer; tiny minimap overlay; basic shading by distance.
+Deliverable: stable, readable code; small QoL touches.
+
+File/Function checklist (you can copy into a TODO)
+main.c – arg check, init, game loop.
+
+parse.c / parse_map.c – read .cub, store fields, map allocation.
+
+validate.c – keys present, map closure, single spawn.
+
+player.c – init dir/plane, input handling.
+
+raycast.c – DDA and wall stripe.
+
+texture.c – XPM load, sampling.
+
+draw.c – put pixels, floor/ceiling fill.
+
+events.c – key press/release, window close.
+
+free.c – destroy images, free map/paths, mlx cleanup.
+
+utils.c – split, trim, rgb parse, error helpers.
+
