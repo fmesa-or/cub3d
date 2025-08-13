@@ -6,7 +6,7 @@
 #    By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/30 20:48:10 by fmesa-or          #+#    #+#              #
-#    Updated: 2025/05/30 21:00:07 by fmesa-or         ###   ########.fr        #
+#    Updated: 2025/08/13 18:53:10 by fmesa-or         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,11 @@ CC			:= cc
 #Flags
 CFLAGS		:= -Wall -Wextra -Werror -g
 
+#MLX42
+MLX42_DIR	:= ./lib/MLX42
+MLX42		:= $(MLX42_DIR)/build/libmlx42.a
+MLX42_FLAGS	:= -ldl -lglfw -pthread -lm
+
 #Clean
 CLEAN		:= rm -Rf
 
@@ -32,7 +37,7 @@ OBJS_DIR	:= obj
 OBJS		:= $(patsubst $(SRCS_DIR)/%.c, $(OBJS_DIR)/%.o, $(SRCS))
 
 #Headers
-HEADERS		:= -I ./include
+HEADERS		:= -I ./include -I $(MLX42_DIR)/include
 
 #Colors
 COLOR_INFO = \033[1;36m
@@ -64,9 +69,9 @@ all: header $(NAME)
 header:
 	@echo "$$HEADER_ART"
 
-$(NAME): $(OBJS)
+$(NAME): $(MLX42) $(OBJS)
 		@printf "\n$(COLOR_SUCCESS)Compiling executable...$(COLOR_RESET)\n"
-		@$(CC) $(OBJS) $(HEADERS) -o $(NAME) -lreadline
+		@$(CC) $(OBJS) $(MLX42) $(HEADERS) $(MLX42_FLAGS) -o $(NAME) -lreadline
 		@printf "$(COLOR_SUCCESS)✅ $(NAME) is ready!$(COLOR_RESET)\n"
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
@@ -79,6 +84,13 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 		@for i in $$(seq 1 $$(($(BAR_LENGTH)-$(PROGRESS)))); do printf " "; done
 		@printf "$(COLOR_INFO)] %3d%%$(COLOR_RESET)" $(PERCENT)
 		@$(CC) $(CFLAGS) -c $< -o $@ $(HEADERS)
+
+$(MLX42):
+	@printf "$(COLOR_INFO) Building MLX...$(COLOR_RESET)\t\t"
+	@cmake -B $(MLX42_DIR)/build -S $(MLX42_DIR) -DDEBUG=OFF
+	@cmake --build $(MLX42_DIR)/build -j4
+	@sleep 0.25
+	@printf "MLX42 = ✅\n"
 
 clean:
 		@printf "$(COLOR_INFO)Cleaning object files...$(COLOR_RESET)"
