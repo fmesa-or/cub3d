@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 20:49:40 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/08/13 21:32:33 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/08/18 12:06:54 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,16 @@ typedef struct s_textures
 	char	*ea;
 } t_textures;
 
+
+
 /*****************************************************************
  * Main structure with the game info
- * textures ->
- * floor -> floor color
- * ceiling -> ceiling color
- * spawn_x ->
- * spawn_y ->
- * spawn_dir -> The direction of the camera; // 'N', 'S', 'E', 'W'*
+ * textures		->
+ * floor		-> floor color
+ * ceiling		-> ceiling color
+ * spawn_x		->
+ * spawn_y		->
+ * spawn_dir	-> The direction of the camera; // 'N', 'S', 'E', 'W'*
  *****************************************************************/
 typedef struct s_game
 {
@@ -53,5 +55,7 @@ typedef struct s_game
 	int			spawn_y;
 	char		spawn_dir;
 } t_game;
+
+
 
 # endif

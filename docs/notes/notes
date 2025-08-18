@@ -1,0 +1,32 @@
+en el parsreo podemos recibir más de un mapa separados por espacios:
+111111      111111
+100001      100001
+111111      111111
+
+Es valido hacia el lado pero no hacía abajo
+
+--------------------------------------
+No puede haber más de una textura por cordenada, cordenada o color de C/F
+
+----------------------------------
+Mapa/archivo vacío
+Texturas separados un espacio mínimo o infinitos espacios o tabulaciones
+Texturas que no existan
+carpetas que no existan
+Sin permisos
+que solo sea un color por Ceiling o Floor
+Que no haya ninguna valor de ningun color por encima de 255 o menos de 0
+Tener cuidado con esto -> F 23,,35
+Los valores del color no pueden ser mayores a un int (a la hora de pasar de string a int controlar que no pete)
+Las texturas pueden estar cambiadas de orden y mezcladas con los colores.
+Los colores tienen que estar escritos todos seguidos
+Las texturas y colores solo pueden ir arriba del mapa
+Justo despues del mapa, al final del archivo, checkear que no pete teniendo saltos de linea
+Las tabulaciones EN EL MAPA tienen que dar error.
+
+
+    11 1
+    1111
+	1001
+	1001
+	1111

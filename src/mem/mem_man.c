@@ -6,12 +6,15 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 17:53:35 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/08/13 17:53:38 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/08/18 14:19:56 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/**
+ * 
+ */
 static unsigned int	hash_index_ptr(void *ptr)
 {
 	unsigned long	addr;
@@ -43,7 +46,9 @@ static t_mem	*mem_find(void *ptr)
 	}
 	return (NULL);
 }
-
+/**
+ * Adds the new memory to the HASH *
+ */
 void	mem_add(void *ptr)
 {
 	t_data			*data;

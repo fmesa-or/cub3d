@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 21:25:11 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/08/13 21:59:55 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/08/18 14:30:03 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,18 @@ char	*read_file(const char *filename)
 	int		bytes;
 	char	*tmp;
 
-	fd = sopen(filename, O_RDONLY, -1); //fix sopen!!
+	fd = sopen(filename, O_RDONLY, -1);
 	if (fd < 0)
 		return (NULL);
 	content = ft_strdup(""); // start empty //adapt for vmem
 
-	while ((bytes = read(fd, buf, BUFFER_SIZE)) > 0)
+	while ((bytes = read(fd, buf, BUFFER_SIZE)) > 0)//check if saves memory
 	{
 		buf[bytes] = '\0';
 		tmp = content;
-		content = ft_strjoin(content, buf); //add function!! //add for vmem
-		sfree(tmp);
+		sfree(content);//check
+		content = ft_strjoin(tmp, buf); //add function!! //add for vmem
+		sfree(tmp);//check
 	}
 	sclose(fd);//fix sclose!!
 
