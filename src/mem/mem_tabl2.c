@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 11:46:55 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/08/13 17:53:49 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/08/19 15:48:52 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	sclose_all(void)
 		fd++;
 	}
 }
-
+/*
 int	sdup(int fd)
 {
 	t_data	*data;
@@ -88,4 +88,4 @@ int	spipe(int *fd)
 	data->fd_table[fd[0]] = 1;
 	data->fd_table[fd[1]] = 1;
 	return (0);
-}
+}*/

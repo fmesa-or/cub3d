@@ -6,11 +6,12 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 11:47:06 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/08/13 17:54:06 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/08/19 15:48:27 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
 
 void	sexit(int code)
 {
@@ -60,7 +61,7 @@ void	*ft_memset(void *b, int c, int len)
 		*p++ = (unsigned char)c;
 	return (b);
 }
-
+/*
 char	*get_cwd(void)
 {
 	char	*tmp;
@@ -74,4 +75,4 @@ char	*get_cwd(void)
 	if (!path)
 		alloc_fail(NO_MEMORY);
 	return (path);
-}
+}*/

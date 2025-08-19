@@ -6,7 +6,7 @@
 #    By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/30 20:48:10 by fmesa-or          #+#    #+#              #
-#    Updated: 2025/08/18 14:33:16 by fmesa-or         ###   ########.fr        #
+#    Updated: 2025/08/19 15:40:42 by fmesa-or         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ CLEAN		:= rm -Rf
 
 #Sources
 SRCS_DIR	:= src
-SRCS		:= $(wildcard $(SRCS_DIR)/*.c)
+SRCS		:= $(shell find $(SRCS_DIR) -name "*.c")
 
 #Objects
 OBJS_DIR	:= obj
