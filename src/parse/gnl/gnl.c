@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 14:01:30 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/08/19 14:28:51 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/08/20 18:57:16 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static char	*ft_hold_the_line(char *backup)
 		return (NULL);
 	while (backup[i] && backup[i] != '\n')
 		i++;
-	line = (char *)malloc(sizeof(char) * (i + 2));//change for smalloc
+	line = (char *)smalloc(sizeof(char) * (i + 2));//change for smalloc
 	if (!line)
 		return (NULL);
 	if (backup[i] != '\0')
@@ -46,21 +46,21 @@ static char	*ft_backuper(char *backup)
 	i = gnl_jumpfinder(backup);
 	if (!backup[i])
 	{
-		free(backup);//fix
+		sfree(backup);//fix
 		return (NULL);
 	}
-	newbackup = (char *)malloc((sizeof(char) * (ft_strlen(backup) - i)));//fix
+	newbackup = (char *)smalloc((sizeof(char) * (ft_strlen(backup) - i)));//fix
 	if (!newbackup)
 		return (NULL);
 	j = 0;
 	while (backup[i + ++j])
 		newbackup[j - 1] = backup[i + j];
 	if (backup)
-		free (backup);//fix
+		sfree (backup);//fix
 	newbackup[j - 1] = '\0';
 	if (newbackup[0] == '\0')
 	{
-		free (newbackup);//fix
+		sfree (newbackup);//fix
 		return (NULL);
 	}
 	return (newbackup);
@@ -71,7 +71,7 @@ static char	*ft_read_left(int fd, char *backup)
 	int		read_bytes;
 	char	*buffer;
 
-	buffer = (char *)malloc((GNL_BUFF_SIZE + 1) * sizeof(char));//fix
+	buffer = (char *)smalloc((GNL_BUFF_SIZE + 1) * sizeof(char));//fix
 	if (!buffer)
 		return (NULL);
 	read_bytes = 1;
@@ -80,10 +80,10 @@ static char	*ft_read_left(int fd, char *backup)
 		read_bytes = read(fd, buffer, GNL_BUFF_SIZE);//check if read saves memory
 		if (read_bytes <= 0)
 		{
-			free (buffer);//fix
+			sfree (buffer);//fix
 			if (read_bytes == -1)
 			{
-				free (backup);//fix
+				sfree (backup);//fix
 				return (NULL);
 			}
 			return (backup);
@@ -91,7 +91,7 @@ static char	*ft_read_left(int fd, char *backup)
 		buffer[read_bytes] = '\0';
 		backup = gnl_strjoin(backup, buffer);
 	}
-	free (buffer);//fix
+	sfree (buffer);//fix
 	return (backup);
 }
 
@@ -105,7 +105,7 @@ char	*get_next_line(int fd)
 	backup = ft_read_left(fd, backup);
 	if (!backup)
 	{
-		free (backup);//fix
+		sfree (backup);//fix
 		backup = NULL;
 		return (NULL);
 	}

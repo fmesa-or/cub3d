@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 21:01:23 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/08/19 16:01:01 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/08/20 18:58:20 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,10 @@ int	main(void)
 	get_pdata(&data);
 
 	//test
-/*	char	**array;
+	char	**array;
 	array = read_file("docs/notes/tareas");
 	if (array == NULL)
-	{
 		printf("Error: No se pudo leer el archivo 'docs/notes/tareas'\n");
-	}
 	else
 	{
 		int	i = 0;
@@ -46,7 +44,7 @@ int	main(void)
 			printf("Línea %d: %s", i + 1, array[i]);
 			i++;
 		}
-	}*/
+	}
 
 	mlx = mlx_init(WIDTH, HEIGHT, "CUB3D", true);
 	if (!mlx)
@@ -62,6 +60,6 @@ int	main(void)
 	// Cleanup MLX42 internals
 	mlx_terminate(mlx);
 	//Use the function for free all the data stored manually
-	//mem_clear();
+	mem_clear();
 	return (EXIT_SUCCESS);
 }

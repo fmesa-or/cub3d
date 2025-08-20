@@ -5,4 +5,4 @@ commands:
 	-set follow-fork-mode child
 
 valgrind -> bash docs/leaks
-	*error messajes only show up when minishell is closed*
+	*error messajes only show up when cub3D is closed*

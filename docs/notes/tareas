@@ -1,11 +1,13 @@
--Hacer que la main reciba argumentos												(Cris)
--Crear un checker para ver que el archivo es un .cub								(Cris)
+-Hacer que la main reciba argumentos												(Cris)[DONE]
+-Crear un checker para ver que el archivo es un .cub								(Cris)[DONE]
+-Revisar que no sea un dir															(Cris)
 
 -Hacer el parseo del .cub en un array												(Paco) [DONE]
 
-1/2-Recoger texturas y colores del array y grabarlos en la estructura t_game		(TBC)
-2/2-Checker que texturas y colores existan y no esten duplicados (TBC)
+1/2-Recoger texturas y colores del array y grabarlos en la estructura t_game		(Cris)
+2/2-Checker que texturas y colores existan y no esten duplicados					(Cris)
 
-1/2-Convertir el mapa dentro del array en su propio array en game->map (char **).	(TBC)
-2/2-Checker mapa																	(TBC)
+1/2-Convertir el mapa dentro del array en su propio array en game->map (char **).	(Paco)
+2/2-Checker mapa																	(Paco)
+
 
