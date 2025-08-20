@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   readfile.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 21:25:11 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/08/20 18:51:14 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/08/20 20:56:06 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ char	**read_file(const char *filename)
 		return (NULL);
 
 	array = smalloc(sizeof(char *)); // array vacío
+	if (!array)
+		//ERROR
 	array[0] = NULL;
 	i = 0;
 
@@ -58,6 +60,8 @@ char	**read_file(const char *filename)
 
 	return (array);
 }
+
+
 
 
 //Split the text into lines

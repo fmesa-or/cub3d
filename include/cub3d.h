@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 21:01:46 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/08/19 15:35:19 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/08/20 21:37:13 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <stdbool.h>
+
 
 /**********
  * WINDOW *
@@ -57,6 +59,23 @@ int		gnl_jumpfinder(char *backup);
 
 int		ft_strlen(char *s);
 char	*ft_strchr(char *s, int c);
+
+/**
+ * ERROR
+ */
+void	error_msg(char *msg);
+
+/**
+ * CHECK FILE
+ */
+void	check_file(char *av);
+int	check_extension(char *file_name);
+
+/**
+ * MAP PARSING AND VALIDATION
+ */
+void	cu_parse_map(char **file, int start);
+void	validate_map(void);
 
 
 #endif
