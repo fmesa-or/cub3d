@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 21:01:23 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/08/20 21:57:01 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/08/26 19:18:33 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int	main(int ac, char **av)
 		error_msg("Error\nPlease, run Cub3D with exactly one argument.\n");
 
 	// Inicializar el sistema de memoria
-	ft_memset(&data, 0, sizeof(t_data));
+		//iniciar a 0 los datos de las texturas.???? init data
+	ft_memset(&data, 0, sizeof(t_data));//meter dentro de init data
 	get_pdata(&data);
-
 
 
 

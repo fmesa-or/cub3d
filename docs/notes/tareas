@@ -4,10 +4,14 @@
 
 -Hacer el parseo del .cub en un array												(Paco) [DONE]
 
-1/2-Recoger texturas y colores del array y grabarlos en la estructura t_game		(Cris)
+1/2-Recoger texturas y colores del array y grabarlos en la estructura t_game		(Cris)[DONE]
 2/2-Checker que texturas y colores existan y no esten duplicados					(Cris)
 
-1/2-Convertir el mapa dentro del array en su propio array en game->map (char **).	(Paco)
-2/2-Checker mapa																	(Paco)
+-1/3-Convertir el mapa dentro del array en su propio array en game->map (char **).	(Paco)[DONE]
+-2/3-Checker mapa																	(Paco)
+-3/3-Iniciar posicion Jugador														(TBC)
 
--Hacer función de error
+
+-Hacer función de error																(Cris)[DONE]
+
+-Hacer una función general que llame al parseo, para agrupar todo en orden.

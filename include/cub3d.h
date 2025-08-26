@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 21:01:46 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/08/20 21:37:13 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/08/26 19:15:32 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ int	check_extension(char *file_name);
  */
 void	cu_parse_map(char **file, int start);
 void	validate_map(void);
+void	save_map_data(char **map_array);
+void	parse_textures(char **map_array, t_textinfo *tex, int *i);
 
 
 #endif

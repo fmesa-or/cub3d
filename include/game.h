@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 20:49:40 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/08/20 19:40:10 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/08/26 19:12:58 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,26 @@
 # define GAME_H
 
 /***
- * 
+ * floor -> Values for colors RGB
+ * Ceiling -> 
+ * paths -> Paths to textures
+ * has_paths -> Checkers to avoid duplicated path asignation.
  */
-typedef struct s_color
+typedef struct s_textinfo
 {
-	int	r;
-	int	g;
-	int	b;
-} t_color;
-
-/***
- * 
- */
-typedef struct s_textures
-{
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-} t_textures;
+	int		floor[3];
+	int		ceiling[3];
+	char	*no_path;
+	char	*so_path;
+	char	*we_path;
+	char	*ea_path;
+	int		has_no;
+	int		has_so;
+	int		has_we;
+	int		has_ea;
+	int		has_c;
+	int		has_f;
+} t_textinfo;
 
 
 
@@ -47,9 +48,7 @@ typedef struct s_textures
  *****************************************************************/
 typedef struct s_game
 {
-	t_textures	textures;
-	t_color		floor;
-	t_color		ceiling;
+	t_textinfo	*textures;
 	char		**map;
 	int			spawn_x;
 	int			spawn_y;
