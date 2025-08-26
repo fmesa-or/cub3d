@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_map_data.c                                     :+:      :+:    :+:   */
+/*   ft_sfree_split.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/25 03:43:05 by crmorale          #+#    #+#             */
-/*   Updated: 2025/08/26 20:22:29 by fmesa-or         ###   ########.fr       */
+/*   Created: 2025/08/26 20:31:11 by fmesa-or          #+#    #+#             */
+/*   Updated: 2025/08/26 20:32:30 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	save_map_data(char **map_array)
+void	ft_sfree_split(char **array)
 {
-	int			i;
-	t_data		*data;
-	t_textinfo	*tex;
+	int i = 0;
 
-	i = 0;
-	data = get_pdata(NULL);
-
-	//Almacenar los datos principales
-	parse_textures(map_array, data->game.textures, &i);
-	cu_parse_map(map_array, i);
-	cu_checkmap(NULL);
-	//Iniciar la informacion de la ubicación del jugador
+	if (!array)
+		return ;
+	while (array[i])
+	{
+		sfree(array[i]);
+		i++;
+	}
+	sfree(array);
 }

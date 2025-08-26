@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:29:47 by crmorale          #+#    #+#             */
-/*   Updated: 2025/08/25 20:39:50 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/08/26 20:34:41 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,3 +37,47 @@ int	valid_rgb_value(int n)
 	return (n >= 0 && n <= 255);
 }
 
+/**
+ * 
+ */
+int	parse_rgb_line(char *line, int rgb[3])
+{
+	char	**parts;
+	int		i;
+
+	// saltar espacios
+	while ((c >= 9 && c <= 13) || c == 32)
+		line++;
+
+	// dividir por coma
+	parts = ft_split(line, ','); //añadir split
+	if (!parts)
+		return (0);
+
+	// comprobar que hay exactamente 3 valores
+	i = 0;
+	while (i < 3)
+	{
+		if (!parts[i])
+		{
+			ft_sfree_split(parts);
+			return (0);
+		}
+		rgb[i] = ft_atoi_rgb(parts[i]);
+		if (!valid_rgb_value(rgb[i]))
+		{
+			ft_sfree_split(parts);
+			return (0);
+		}
+		i++;
+	}
+
+	if (parts[3]) // más de 3 valores -> error
+	{
+		ft_sfree_split(parts);
+		return (0);
+	}
+
+	ft_sfree_split(parts);
+	return (1);
+}

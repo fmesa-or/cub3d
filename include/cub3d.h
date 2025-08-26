@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 21:01:46 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/08/26 19:15:32 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/08/26 20:38:53 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,12 @@ int		gnl_jumpfinder(char *backup);
 
 int		ft_strlen(char *s);
 char	*ft_strchr(char *s, int c);
+void	ft_sfree_split(char **array);
+char	**ft_split(char const *s, char c);
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+
+
+
 
 /**
  * ERROR
@@ -69,7 +75,7 @@ void	error_msg(char *msg);
  * CHECK FILE
  */
 void	check_file(char *av);
-int	check_extension(char *file_name);
+int		check_extension(char *file_name);
 
 /**
  * MAP PARSING AND VALIDATION
@@ -78,6 +84,8 @@ void	cu_parse_map(char **file, int start);
 void	validate_map(void);
 void	save_map_data(char **map_array);
 void	parse_textures(char **map_array, t_textinfo *tex, int *i);
+int		parse_rgb_line(char *line, int rgb[3]);
+
 
 
 #endif

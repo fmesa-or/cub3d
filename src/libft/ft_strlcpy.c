@@ -1,29 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_map_data.c                                     :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/25 03:43:05 by crmorale          #+#    #+#             */
-/*   Updated: 2025/08/26 20:22:29 by fmesa-or         ###   ########.fr       */
+/*   Created: 2025/08/26 20:38:23 by fmesa-or          #+#    #+#             */
+/*   Updated: 2025/08/26 20:38:39 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	save_map_data(char **map_array)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	int			i;
-	t_data		*data;
-	t_textinfo	*tex;
+	size_t	i;
+	size_t	n;
+	char	*dst_;
+	char	*src_;
 
 	i = 0;
-	data = get_pdata(NULL);
-
-	//Almacenar los datos principales
-	parse_textures(map_array, data->game.textures, &i);
-	cu_parse_map(map_array, i);
-	cu_checkmap(NULL);
-	//Iniciar la informacion de la ubicación del jugador
+	n = 0;
+	dst_ = dst;
+	src_ = (char *)src;
+	while (src[n] != '\0')
+		n++;
+	if (dstsize == 0)
+		return (n);
+	if (dstsize != '\0')
+	{
+		while (i < dstsize - 1 && i < n)
+		{
+			dst_[i] = src_[i];
+			i++;
+		}
+		dst[i] = '\0';
+	}
+	return (n);
 }
