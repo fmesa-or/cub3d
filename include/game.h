@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 20:49:40 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/08/26 19:12:58 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/02 13:15:17 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ typedef struct s_game
 	int			spawn_x;
 	int			spawn_y;
 	char		spawn_dir;
+	int			max_col;
+	int			max_row;
 } t_game;
 
 
