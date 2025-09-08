@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 21:01:23 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/09/08 20:18:15 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/08 21:06:14 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ int	main()
 	printf("spawn_dir: %c\n", data.game.spawn_dir);
 	printf("x: %d\n", data.game.spawn_x);
 	printf("y: %d\n", data.game.spawn_y);
-	printf("ceiling: %d\n", *data.game.textures->ceiling);
-	printf("floor: %d\n", *data.game.textures->floor);
-	printf("ea: %s\n", data.game.textures->ea_path);
-	printf("no: %s\n", data.game.textures->no_path);
-	printf("so: %s\n", data.game.textures->so_path);
-	printf("we: %s\n", data.game.textures->we_path);
+//	printf("ceiling: %d\n", *data.game.textures->ceiling);
+//	printf("floor: %d\n", *data.game.textures->floor);
+//	printf("ea: %s\n", data.game.textures->ea_path);
+//	printf("no: %s\n", data.game.textures->no_path);
+//	printf("so: %s\n", data.game.textures->so_path);
+//	printf("we: %s\n", data.game.textures->we_path);
 	while (data.game.map[i])
 	{
 		printf("%s\n", data.game.map[i]);

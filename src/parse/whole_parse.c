@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:42:11 by crmorale          #+#    #+#             */
-/*   Updated: 2025/09/08 20:14:16 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/08 21:08:17 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	check_and_parse_file(char *file_name, t_data *data)
 	init_textinfo(data->game.textures);
 	check_file(file_name);
 	map_array = read_file(file_name);
-	parse_textures(map_array, data->game.textures, &i);
+	parse_textures(map_array, data->game.textures, &i);//REVISAR ROMPE AL EJECUTAR
 	cu_parse_map(map_array, i);
 	cu_checkmap(data);
 	check_player_pos(&data->game);

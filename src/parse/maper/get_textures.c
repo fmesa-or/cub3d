@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 15:19:04 by crmorale          #+#    #+#             */
-/*   Updated: 2025/09/08 20:19:06 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/08 21:04:35 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,18 @@ int check_tex_path(char *path)
 	return 1;
 }
 
-int	valid_tex(char *path)
+int valid_tex(char *path)
 {
-	if (!check_tex_path(path) || !check_xpm(path))
+	if (!path)
 		return (0);
 	return (check_tex_path(path) && check_xpm(path));
 }
 
 char	*get_texture_path(char *line, int j)
 {
-	int		len;
-	int		i;
+	int	 len;
+	int	 i;
 	char	*path;
-
 	while (line[j] && ft_isspace(line[j]))
 		j++;
 	len = j;
@@ -60,42 +59,59 @@ char	*get_texture_path(char *line, int j)
 	return (path);
 }
 
-int	final_tex_check(t_textinfo *tex)
+void	final_tex_check(t_textinfo *tex)
 {
-	if(!tex->has_no || !tex->has_so || !tex->has_ea || !tex->has_we
+	if (!tex->has_no || !tex->has_so || !tex->has_ea || !tex->has_we
 		|| !tex->has_c || !tex->has_f)
 		error_msg("Error\nCannot find all the textures and colors in map file.\n");
-	return (valid_tex(tex->no_path) && valid_tex(tex->so_path)
-		&& valid_tex(tex->ea_path) && valid_tex(tex->we_path));
+	if (!valid_tex(tex->no_path) || !valid_tex(tex->so_path)
+		|| !valid_tex(tex->ea_path) || !valid_tex(tex->we_path))
+		error_msg("Error\nInvalid textures or texture paths.\n");
 }
 
-//revisa si tenemops todos los datos? para poder enviar la posición i?
+//revisa si tenemos todos los datos? para poder enviar la posición i?
 void	parse_textures(char **map_array, t_textinfo *tex, int *i)
 {
 	char	*line;
-
 	while (map_array[*i])
 	{
 		line = map_array[*i];
 		while (*line && ft_isspace(*line))
 			line++;
-		if (!ft_strncmp(line, "NO", 2) && !tex->has_no++)
+		if (!ft_strncmp(line, "NO", 2) && tex->has_no == 0)
+		{
 			tex->no_path = get_texture_path(line, 2);
-		else if (!ft_strncmp(line, "SO", 2) && !tex->has_so++)
+			tex->has_no++;
+		}
+		else if (!ft_strncmp(line, "SO", 2) && tex->has_so == 0)
+		{
 			tex->so_path = get_texture_path(line, 2);
-		else if (!ft_strncmp(line, "WE", 2) && !tex->has_we++)
+			tex->has_so++;
+		}
+		else if (!ft_strncmp(line, "WE", 2) && tex->has_we == 0)
+		{
 			tex->we_path = get_texture_path(line, 2);
-		else if (!ft_strncmp(line, "EA", 2) && !tex->has_ea++)
+			tex->has_we++;
+		}
+		else if (!ft_strncmp(line, "EA", 2) && tex->has_ea == 0)
+		{
 			tex->ea_path = get_texture_path(line, 2);
-		else if (*line == 'F' && !tex->has_f++)
+			tex->has_ea++;
+		}
+		else if (*line == 'F' && tex->has_f == 0)
+		{
 			parse_rgb_line(line + 1, tex->floor);
-		else if (*line == 'C' && !tex->has_c++)
+			tex->has_f++;
+		}
+		else if (*line == 'C' && tex->has_c == 0)
+		{
 			parse_rgb_line(line + 1, tex->ceiling);
+			tex->has_c++;
+		}
 		else if (*line == '1' || *line == '0')
-			break ;			   // aquí empezaría el mapa
+			break ;			// aquí empezaría el mapa
 		(*i)++;
 	}
 	final_tex_check(tex); // ***AÑADIDA ESTA FUNCIÓN***
 	//checkear que las texturas aparezcan 1 vez y que sean minimo todas valor 1.
 }
-

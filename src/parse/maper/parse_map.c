@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 19:48:00 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/08/25 20:40:12 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/08 20:40:27 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	cu_savemap(char **file, int start)
 	int		player_count = 0;
 
 	i = start;
-	while (file[i])
+	while (file[i])//sacamos el alto del archivo para reservar
 		i++;
 	map = smalloc(sizeof(char *) * (i - start + 1));
 	if (!map)
