@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 11:47:06 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/08/19 15:48:27 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/08 20:04:47 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,27 @@ void	*ft_memset(void *b, int c, int len)
 		*p++ = (unsigned char)c;
 	return (b);
 }
+
+void	*ft_bzero(void *s, size_t n)
+{
+	size_t	i;
+	char	*a;
+
+	i = 0;
+	a = (char *)s;
+	if (n == 0)
+	{
+		return (0);
+	}
+	while (i < n)
+	{
+		a[i] = 0;
+		i++;
+	}
+	return (0);
+}
+
+
 /*
 char	*get_cwd(void)
 {

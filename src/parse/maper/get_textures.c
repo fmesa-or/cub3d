@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 15:19:04 by crmorale          #+#    #+#             */
-/*   Updated: 2025/08/25 21:20:30 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/08 20:19:06 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int check_tex_path(char *path)
 
 int	valid_tex(char *path)
 {
-	if (!check_tex_path || !check_xpm)
+	if (!check_tex_path(path) || !check_xpm(path))
 		return (0);
-	return (check_tex_path && check_xpm);
+	return (check_tex_path(path) && check_xpm(path));
 }
 
 char	*get_texture_path(char *line, int j)
@@ -45,10 +45,10 @@ char	*get_texture_path(char *line, int j)
 	int		i;
 	char	*path;
 
-	while (line[j] && is_space(line[j]))
+	while (line[j] && ft_isspace(line[j]))
 		j++;
 	len = j;
-	while (line[len] && !is_space(line[len]) && line[len] != '\n')
+	while (line[len] && !ft_isspace(line[len]) && line[len] != '\n')
 		len++;
 	path = smalloc(sizeof(char) * (len - j + 1));
 	if (!path)
@@ -60,6 +60,15 @@ char	*get_texture_path(char *line, int j)
 	return (path);
 }
 
+int	final_tex_check(t_textinfo *tex)
+{
+	if(!tex->has_no || !tex->has_so || !tex->has_ea || !tex->has_we
+		|| !tex->has_c || !tex->has_f)
+		error_msg("Error\nCannot find all the textures and colors in map file.\n");
+	return (valid_tex(tex->no_path) && valid_tex(tex->so_path)
+		&& valid_tex(tex->ea_path) && valid_tex(tex->we_path));
+}
+
 //revisa si tenemops todos los datos? para poder enviar la posición i?
 void	parse_textures(char **map_array, t_textinfo *tex, int *i)
 {
@@ -67,24 +76,26 @@ void	parse_textures(char **map_array, t_textinfo *tex, int *i)
 
 	while (map_array[*i])
 	{
-		*line = map_array[*i];
-		while (*line && is_space(*line))
+		line = map_array[*i];
+		while (*line && ft_isspace(*line))
 			line++;
-		if (!strncmp(line, "NO", 2) && !tex->has_no++)
+		if (!ft_strncmp(line, "NO", 2) && !tex->has_no++)
 			tex->no_path = get_texture_path(line, 2);
-		else if (!strncmp(line, "SO", 2) && !tex->has_so++)
+		else if (!ft_strncmp(line, "SO", 2) && !tex->has_so++)
 			tex->so_path = get_texture_path(line, 2);
-		else if (!strncmp(line, "WE", 2) && !tex->has_we++)
+		else if (!ft_strncmp(line, "WE", 2) && !tex->has_we++)
 			tex->we_path = get_texture_path(line, 2);
-		else if (!strncmp(line, "EA", 2) && !tex->has_ea++)
+		else if (!ft_strncmp(line, "EA", 2) && !tex->has_ea++)
 			tex->ea_path = get_texture_path(line, 2);
 		else if (*line == 'F' && !tex->has_f++)
-			parse_rgb_line(line + 1, &tex->floor);
+			parse_rgb_line(line + 1, tex->floor);
 		else if (*line == 'C' && !tex->has_c++)
-			parse_rgb_line(line + 1, &tex->ceiling);
+			parse_rgb_line(line + 1, tex->ceiling);
 		else if (*line == '1' || *line == '0')
 			break ;			   // aquí empezaría el mapa
-		*i++;
+		(*i)++;
 	}
+	final_tex_check(tex); // ***AÑADIDA ESTA FUNCIÓN***
 	//checkear que las texturas aparezcan 1 vez y que sean minimo todas valor 1.
 }
+

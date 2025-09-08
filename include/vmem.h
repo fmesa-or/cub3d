@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 21:16:58 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/08/19 16:05:42 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/08 20:05:22 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	sfree(void *ptr);
 void	mem_delete(void *ptr);
 t_data	*get_pdata(t_data *data);
 void	*smalloc(long bytes);
+void	*scalloc(size_t count, size_t size);
 void	alloc_fail(int type);
 void	mem_add(void *ptr);
 void	sexit(int code);
@@ -63,6 +64,7 @@ void	sclose_all(void);
 void	sfree_all(void);
 void	mem_clear(void);
 void	*ft_memset(void *b, int c, int len);
+void	*ft_bzero(void *s, size_t n);
 //int		spipe(int *fd);
 //int		sdup2(int fd1, int fd2);
 //int		sdup(int fd);

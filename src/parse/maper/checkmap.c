@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 20:23:11 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/09/02 14:05:57 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/08 20:12:45 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,21 +67,21 @@ static void	cu_filledmaper(t_game game)
 	bool	is_filled;
 	int		i;
 
-	filledmap = ft_calloc(game.max_row + 1, sizeof(bool*)); //añadir calloc con smalloc
+	filledmap = scalloc(game.max_row + 1, sizeof(bool*)); //añadir calloc con smalloc
 	if (!filledmap)
-		//ERROR
+		error_msg("ERROR: checkmap.c: cu_filledmaper: first scalloc failed.");
 	i = 0;
 	while (i < game.max_row)
 	{
-		filledmap[i] = ft_calloc(game.max_col, sizeof(bool));
+		filledmap[i] = scalloc(game.max_col, sizeof(bool));
 		if (!filledmap[i])
-			//ERROR
+			error_msg("ERROR: checkmap.c: cu_filledmaper: second scalloc failed.");
 		i++;
 	}
 	is_filled = cu_floodfill(game, filledmap, game.spawn_y, game.spawn_x);
 	//liberar fillempa;
 	if(is_filled == false)
-		//ERROR: BAD MAP: NOT CLOSED BY WALLS
+		error_msg("ERROR: BAD MAP: NOT CLOSED BY WALLS");
 }
 
 static void	cu_map_size(char **map)
@@ -92,6 +92,8 @@ static void	cu_map_size(char **map)
 	t_data	*data;
 
 	max_col = 0;
+	i = 0;
+	j = 0;
 	while (map[i])
 	{
 		while (map[i][j])
@@ -108,12 +110,9 @@ static void	cu_map_size(char **map)
 /**
  * 
  */
-void	cu_checkmap(void)
+void	cu_checkmap(t_data *data)
 {
-	t_data	*data;
 
-	data = get_pdata(NULL);
-	
 	cu_map_size(data->game.map);
 	cu_filledmaper(data->game);
 	cu_secondmap_check(data->game);

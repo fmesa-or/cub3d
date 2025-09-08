@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 11:46:16 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/08/19 15:49:41 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/08 20:04:09 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,21 @@ void	*smalloc(long bytes)
 	if (!ptr)
 		alloc_fail(NO_MEMORY);
 	mem_add(ptr);
+	return (ptr);
+}
+void	*scalloc(size_t count, size_t size)
+{
+	void	*ptr;
+
+	if (count == 0 || size == 0)
+	{
+		ptr = smalloc (0);
+		return (ptr);
+	}
+	ptr = smalloc (count * size);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, count * size);
 	return (ptr);
 }
 

@@ -6,13 +6,13 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:29:47 by crmorale          #+#    #+#             */
-/*   Updated: 2025/08/26 20:34:41 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/08 20:02:34 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
+#include "cub3d.h"
 
-int ft_atoi_rgb(const char *str)
+int	ft_atoi_rgb(const char *str)
 {
 	int	i;
 	int	result;
@@ -45,8 +45,9 @@ int	parse_rgb_line(char *line, int rgb[3])
 	char	**parts;
 	int		i;
 
+
 	// saltar espacios
-	while ((c >= 9 && c <= 13) || c == 32)
+	while ((*line >= 9 && *line <= 13) || *line == 32)
 		line++;
 
 	// dividir por coma
