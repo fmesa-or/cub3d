@@ -6,7 +6,7 @@ SO textures/bookshelf_01.xpm
 WE textures/bookshelf_02.xpm
 EA textures/bookshelf_03.xpm
 
-
+ 
  11111111111111111111111
  111100000011110000000001    
  100000000000000000000011    
@@ -18,4 +18,4 @@ EA textures/bookshelf_03.xpm
        111
 
            
-    1111
+    111
