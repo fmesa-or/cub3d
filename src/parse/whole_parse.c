@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:42:11 by crmorale          #+#    #+#             */
-/*   Updated: 2025/09/08 21:08:17 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/09 14:22:52 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	check_and_parse_file(char *file_name, t_data *data)
 	int		i;
 
 	i = 0;
+	// Asignar memoria para las texturas antes de inicializar
+	data->game.textures = smalloc(sizeof(t_textinfo));
 	init_textinfo(data->game.textures);
 	check_file(file_name);
 	map_array = read_file(file_name);

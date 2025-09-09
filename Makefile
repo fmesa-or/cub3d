@@ -6,7 +6,7 @@
 #    By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/30 20:48:10 by fmesa-or          #+#    #+#              #
-#    Updated: 2025/08/19 15:40:42 by fmesa-or         ###   ########.fr        #
+#    Updated: 2025/09/09 14:02:34 by fmesa-or         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,9 @@ CC			:= cc
 CFLAGS		:= -Wall -Wextra -Werror -g
 
 #MLX42
-MLX42_DIR	:= ./lib/MLX42
-MLX42		:= $(MLX42_DIR)/build/libmlx42.a
-MLX42_FLAGS	:= -ldl -lglfw -pthread -lm
+#MLX42_DIR	:= ./lib/MLX42
+#MLX42		:= $(MLX42_DIR)/build/libmlx42.a
+#MLX42_FLAGS	:= -ldl -lglfw -pthread -lm
 
 #Clean
 CLEAN		:= rm -Rf
@@ -37,7 +37,8 @@ OBJS_DIR	:= obj
 OBJS		:= $(patsubst $(SRCS_DIR)/%.c, $(OBJS_DIR)/%.o, $(SRCS))
 
 #Headers
-HEADERS		:= -I ./include -I $(MLX42_DIR)/include
+#HEADERS		:= -I ./include -I $(MLX42_DIR)/include
+HEADERS		:= -I ./include
 
 #Colors
 COLOR_INFO = \033[1;36m
@@ -69,9 +70,13 @@ all: header $(NAME)
 header:
 	@echo "$$HEADER_ART"
 
-$(NAME): $(MLX42) $(OBJS)
+#$(NAME): $(MLX42) $(OBJS)
+#	@printf "\n$(COLOR_INFO)Building executable...$(COLOR_RESET)"; \
+#	$(CC) $(OBJS) $(MLX42) $(HEADERS) $(MLX42_FLAGS) -o $(NAME) -lreadline; \
+#	printf "\r\033[K$(COLOR_SUCCESS)✅ $(NAME) is ready!$(COLOR_RESET)\n"
+$(NAME): $(OBJS)
 	@printf "\n$(COLOR_INFO)Building executable...$(COLOR_RESET)"; \
-	$(CC) $(OBJS) $(MLX42) $(HEADERS) $(MLX42_FLAGS) -o $(NAME) -lreadline; \
+	$(CC) $(OBJS) $(HEADERS) -o $(NAME) -lreadline; \
 	printf "\r\033[K$(COLOR_SUCCESS)✅ $(NAME) is ready!$(COLOR_RESET)\n"
 
 
@@ -88,12 +93,12 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@printf "$(COLOR_INFO)] %3d%%$(COLOR_RESET)" $(PERCENT)
 	@$(CC) $(CFLAGS) -c $< -o $@ $(HEADERS)
 
-$(MLX42):
-	@printf "$(COLOR_INFO) Building MLX: [                    ] 0/2$(COLOR_RESET)"
-	@cmake -B $(MLX42_DIR)/build -S $(MLX42_DIR) -DDEBUG=OFF > /dev/null 2>&1
-	@printf "\r$(COLOR_INFO) Building MLX: [████████            ] 1/2$(COLOR_RESET)"
-	@cmake --build $(MLX42_DIR)/build -j4 > /dev/null 2>&1
-	@printf "\r$(COLOR_INFO) Building MLX: [████████████████████] 2/2$(COLOR_RESET)\n"
+#$(MLX42):
+#	@printf "$(COLOR_INFO) Building MLX: [                    ] 0/2$(COLOR_RESET)"
+#	@cmake -B $(MLX42_DIR)/build -S $(MLX42_DIR) -DDEBUG=OFF > /dev/null 2>&1
+#	@printf "\r$(COLOR_INFO) Building MLX: [████████            ] 1/2$(COLOR_RESET)"
+#	@cmake --build $(MLX42_DIR)/build -j4 > /dev/null 2>&1
+#	@printf "\r$(COLOR_INFO) Building MLX: [████████████████████] 2/2$(COLOR_RESET)\n"
 
 
 clean:
@@ -101,16 +106,18 @@ clean:
 	@$(CLEAN) $(OBJS_DIR)
 	@printf "\r$(COLOR_SUCCESS)✅ Object files cleaned successfully!$(COLOR_RESET)\n"
 
-clean_mlx:
-	@printf "$(COLOR_INFO)Cleaning MLX42...$(COLOR_RESET)"
-	@rm -rf $(MLX42_DIR)/build
-	@printf "\r$(COLOR_SUCCESS)✅ MLX42 cleaned successfully!$(COLOR_RESET)\n"
+#clean_mlx:
+#	@printf "$(COLOR_INFO)Cleaning MLX42...$(COLOR_RESET)"
+#	@rm -rf $(MLX42_DIR)/build
+#	@printf "\r$(COLOR_SUCCESS)✅ MLX42 cleaned successfully!$(COLOR_RESET)\n"
 
-fclean: clean clean_mlx
+#fclean: clean clean_mlx
+fclean: clean
 	@printf "$(COLOR_INFO)Deleting $(NAME)...$(COLOR_RESET)"
 	@$(CLEAN) $(NAME)
 	@printf "\r$(COLOR_SUCCESS)✅ $(NAME) deleted successfully!$(COLOR_RESET)\n"
 
 re: fclean all
 
-.PHONY: all clean fclean re header clean_mlx
+#.PHONY: all clean fclean re header clean_mlx
+.PHONY: all clean fclean re header

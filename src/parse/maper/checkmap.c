@@ -6,16 +6,31 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 20:23:11 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/09/08 20:12:45 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/09 15:44:41 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+static void	cu_sub_secondmap_check(t_game game, int *i, int *j)
+{
+	if ((ft_isspace(game.map[*i][*j])) != 1)
+		error_msg("ERROR: TOO MANY MAPS IN VERTICAL.");
+	else
+	{
+		while ((ft_isspace(game.map[*i][*j])) == 1)
+			(*j)++;
+		if (game.map[*i][*j] != '\n' && game.map[*i][*j] != '\0')
+			error_msg("ERROR: TOO MANY MAPS IN VERTICAL.");
+		(*j) = 0;
+		(*i)++;
+	}
+}
+
 /**
  * We look for an empty row *
  */
-static void	cu_secondmap_check(t_game game)
+static void	cu_secondmap_check(t_game game)//si meto lineas vacías al final salta como que tiene demasiados mapas
 {
 	int	i;
 	int	j;
@@ -24,26 +39,27 @@ static void	cu_secondmap_check(t_game game)
 	i = 0;
 	j = 0;
 	space_cut = false;
+	while (game.map[i] && (ft_isspace(game.map[i][j])) != 1)
+		i++;
 	while (game.map[i])
 	{
-		//si no es un espacio(pared, suelo o PJ, pasa a la siguiente)
-		while (!(ft_isspace(game.map[i][j])))
-			i++;
-		if (space_cut == true && !(ft_isspace(game.map[i][j])))
-			//ERROR: TOO MANY MAPS IN VERTICAL.
+		if (space_cut == true)
+			cu_sub_secondmap_check(game, &i, &j);
 		//si encontramos un espacio, revisa la fila entera
-		while (!(ft_isspace(game.map[i][j])))
+		while (game.map[i] && (ft_isspace(game.map[i][j])) == 1)
 			j++;
-		if (space_cut == true && !(ft_isspace(game.map[i][j])))
-			//ERROR: TOO MANY MAPS IN VERTICAL.
-		if (game.map[i][j] == '\n' && game.map[i][j] == '\0')
+//		if (space_cut == true && (ft_isspace(game.map[i][j])) != 1)
+//			error_msg("ERROR: TOO MANY MAPS IN VERTICAL.");
+		if (game.map[i] && (game.map[i][j] == '\n' || game.map[i][j] == '\0'))
 			space_cut = true;
+		if (space_cut == true)
+			cu_sub_secondmap_check(game, &i, &j);
 		i++;
 		j = 0;
 	}
 }
 
-static bool	cu_floodfill(t_game game, bool **filledmap, int i, int j)
+/*static bool	cu_floodfill(t_game game, bool **filledmap, int i, int j)
 {
 	bool	is_surrounded;
 
@@ -82,7 +98,7 @@ static void	cu_filledmaper(t_game game)
 	//liberar fillempa;
 	if(is_filled == false)
 		error_msg("ERROR: BAD MAP: NOT CLOSED BY WALLS");
-}
+}*/
 
 static void	cu_map_size(char **map)
 {
@@ -114,7 +130,7 @@ void	cu_checkmap(t_data *data)
 {
 
 	cu_map_size(data->game.map);
-	cu_filledmaper(data->game);
+//	cu_filledmaper(data->game);
 	cu_secondmap_check(data->game);
 
 }

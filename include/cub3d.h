@@ -6,13 +6,13 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 21:01:46 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/09/08 21:03:13 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/09 14:07:34 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# include "MLX42/MLX42.h"
+//# include "MLX42/MLX42.h"
 # include "game.h"
 # include "vmem.h"
 # include <stdlib.h>
@@ -20,6 +20,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdbool.h>
+
 
 
 /**********
