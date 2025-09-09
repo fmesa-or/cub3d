@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 20:23:11 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/09/09 15:44:41 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/09 18:06:54 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	cu_sub_secondmap_check(t_game game, int *i, int *j)
 {
-	if ((ft_isspace(game.map[*i][*j])) != 1)
+	if (((ft_isspace(game.map[*i][*j])) != 1) && ((game.map[*i][*j] != '\n' && game.map[*i][*j] != '\0')))
 		error_msg("ERROR: TOO MANY MAPS IN VERTICAL.");
 	else
 	{
