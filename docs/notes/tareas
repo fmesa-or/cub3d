@@ -16,12 +16,14 @@
 
 -Hacer una función general que llame al parseo, para agrupar todo en orden.			(Cris)[DONE]
 -Hacer función Final_text_check tipo void (y poner error_msg al comprobar si valid_tex != 1)
--Crear calloc con smalloc y revisar todas las notas puercas que has hecho Paquito	
--REvisar mensajes de error de error_msg según subject.
--Inicializar Estructuras
-***-Rompe al ejecutar, sospechamos que es el parse_textures***
+-Crear calloc con smalloc y revisar todas las notas puercas que has hecho Paquito	(Paco)[DONE]
+-REvisar mensajes de error de error_msg según subject.								(TBA)
+-Inicializar Estructuras															(TBA)
+-Arreglar Checker y Floodfill														(Paco)[DONE]
+***-Rompe al ejecutar, sospechamos que es el parse_textures***						(Paco)[DONE]
 
-y si el mapa está abierto por fuera de una habitación cerrada donde este el PJ?  000001111000
+y si el mapa está abierto por fuera de una habitación cerrada donde este el PJ?		(PACO)[DONE]
+000001111000
 000001N01
 100001111
 111111111

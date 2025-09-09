@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 20:23:11 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/09/09 19:28:25 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/09 19:31:14 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,47 +59,6 @@ static void	cu_secondmap_check(t_game game)//si meto lineas vacías al final sal
 	}
 }
 
-/*static bool	cu_floodfill(t_game game, bool **filledmap, int i, int j)
-{
-	bool	is_surrounded;
-
-	if (i < 0 || i >= game.max_row || j < 0 || j >= game.max_col)
-		return (false);
-	if (game.map[i][j] == '1' || filledmap[i][j] == true)
-		return (true);
-	else
-		filledmap[i][j] = true;
-	is_surrounded = true;
-	is_surrounded &= cu_floodfill(game, filledmap, i - 1, j);
-	is_surrounded &= cu_floodfill(game, filledmap, i + 1, j);
-	is_surrounded &= cu_floodfill(game, filledmap, i, j - 1);
-	is_surrounded &= cu_floodfill(game, filledmap, i, j + 1);
-	return (is_surrounded);
-}
-
-static void	cu_filledmaper(t_game game)
-{
-	bool	**filledmap;
-	bool	is_filled;
-	int		i;
-
-	filledmap = scalloc(game.max_row + 1, sizeof(bool*)); //añadir calloc con smalloc
-	if (!filledmap)
-		error_msg("ERROR: checkmap.c: cu_filledmaper: first scalloc failed.");
-	i = 0;
-	while (i < game.max_row)
-	{
-		filledmap[i] = scalloc(game.max_col, sizeof(bool));
-		if (!filledmap[i])
-			error_msg("ERROR: checkmap.c: cu_filledmaper: second scalloc failed.");
-		i++;
-	}
-	is_filled = cu_floodfill(game, filledmap, game.spawn_y, game.spawn_x);
-	//liberar fillempa;
-	if(is_filled == false)
-		error_msg("ERROR: BAD MAP: NOT CLOSED BY WALLS");
-}*/
-
 static void	cu_map_size(char **map)
 {
 	int	i;
@@ -130,7 +89,7 @@ void	cu_checkmap(t_data *data)
 {
 
 	cu_map_size(data->game.map);
-//	cu_filledmaper(data->game);
+	cu_filledmaper(data->game);
 	cu_secondmap_check(data->game);
 
 }
