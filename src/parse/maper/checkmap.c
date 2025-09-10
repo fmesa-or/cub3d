@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 20:23:11 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/09/09 19:31:14 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/10 13:14:01 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,23 @@ static void	cu_secondmap_check(t_game game)//si meto lineas vacías al final sal
 	i = 0;
 	j = 0;
 	space_cut = false;
-	while (game.map[i] && (ft_isspace(game.map[i][j])) != 1)
+	while (game.map[i] != NULL && (ft_isspace(game.map[i][j])) != 1)
 		i++;
-	while (game.map[i])
+	while (game.map[i] != NULL)
 	{
-		if (space_cut == true && game.map[i])
+		if (space_cut == true && game.map[i] != NULL)
 			cu_sub_secondmap_check(game, &i, &j);
 		//si encontramos un espacio, revisa la fila entera
-		while (game.map[i] && (ft_isspace(game.map[i][j])) == 1)
+		while (game.map[i] != NULL && (ft_isspace(game.map[i][j])) == 1)
 			j++;
 //		if (space_cut == true && (ft_isspace(game.map[i][j])) != 1)
 //			error_msg("ERROR: TOO MANY MAPS IN VERTICAL.");
-		if (game.map[i] && (game.map[i][j] == '\n' || game.map[i][j] == '\0'))
+		if (game.map[i] != NULL && (game.map[i][j] == '\n' || game.map[i][j] == '\0'))
 			space_cut = true;
-		if (space_cut == true && game.map[i])
+		if (space_cut == true && game.map[i] != NULL)
 			cu_sub_secondmap_check(game, &i, &j);
-		i++;
+		if (game.map[i] != NULL)
+			i++;
 		j = 0;
 	}
 }
