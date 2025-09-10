@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 19:30:46 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/09/10 12:53:57 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/10 13:21:42 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,14 @@ static bool	cu_floodfill(t_game game, bool ***filledmap, int i, int j)
 	is_surrounded &= cu_floodfill(game, filledmap, i, (j - 1));
 	is_surrounded &= cu_floodfill(game, filledmap, i, (j + 1));
 	return (is_surrounded);
+}
+
+bool	cu_checktile(t_game game, int i, int j)
+{
+	if (game.map[i][j] == '0' || game.map[i][j] == 'N' || game.map[i][j] == 'S' || game.map[i][j] == 'W' || game.map[i][j] == 'E')
+		return(true);
+	else
+		return (false);
 }
 
 //La nueva función, debería ir linea a linea buscando el primer 0 y rellenando el floodfill de cada sala.
@@ -59,7 +67,7 @@ void	cu_filledmaper(t_game game)
 	{
 		while (game.map[i][j] && (game.map[i][j] != '0' || filledmap[i][j] == 1))
 			j++;
-		if (game.map[i][j] && ((game.map[i][j] == '0' || game.map[i][j] == 'N') && filledmap[i][j] == 0))//Hay que sustituir el game.map[i][j] == '0'/'N', por una función que detecte 0,N,S,W y E
+		if (game.map[i][j] && (cu_checktile(game, i, j)) && filledmap[i][j] == 0)
 			is_filled = cu_floodfill(game, &filledmap, i, j);
 		else
 		{
@@ -67,10 +75,6 @@ void	cu_filledmaper(t_game game)
 			i++;
 		}
 	}
-
-	
-	
-	
 	//liberar fillempa;
 	if(is_filled == false)
 		error_msg("ERROR: BAD MAP: NOT CLOSED BY WALLS");
