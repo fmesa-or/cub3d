@@ -6,13 +6,14 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 21:16:58 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/09/08 20:05:22 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/09 14:07:37 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VMEM_H
 # define VMEM_H
 
+# include <stddef.h>
 # define MEM_HASH_SIZE 1031
 
 /*****************************

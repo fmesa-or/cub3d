@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 21:01:23 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/09/08 21:06:14 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/09 15:19:43 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ static void	key_hook(mlx_key_data_t keydata, void *param)
 }*/
 
 
-int	main()
+int	main(int ac, char **av)
 {
 //	mlx_t	*mlx;
 	t_data	data;
 
-//	if (ac != 2)
-//		error_msg("Error\nPlease, run Cub3D with exactly one argument.\n");
+	if (ac != 2)
+		error_msg("Error\nPlease, run Cub3D with exactly one argument.\n");
 
 	// Inicializar el sistema de memoria
 		//iniciar a 0 los datos de las texturas.???? init data
@@ -44,7 +44,7 @@ int	main()
 	//test
 	int	i = 0;
 
-	check_and_parse_file("maps/example.cub", &data);
+	check_and_parse_file(av[1], &data);
 	printf("max col: %d\n", data.game.max_col);
 	printf("max row: %d\n", data.game.max_row);
 	printf("spawn_dir: %c\n", data.game.spawn_dir);
