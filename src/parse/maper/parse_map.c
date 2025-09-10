@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 19:48:00 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/09/08 20:40:27 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/10 14:04:10 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	cu_savemap(char **file, int start)
 		start++;
 		i++;
 	}
-	
 	// Validar que se encontró exactamente una posición del jugador
 	if (player_count == 0)
 		error_msg("ERROR: parse_map.c: cu_savemap: NO PLAYER POSITION FOUND\n");

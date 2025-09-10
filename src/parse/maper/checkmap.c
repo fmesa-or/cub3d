@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 20:23:11 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/09/10 13:14:01 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/10 13:59:24 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ static void	cu_map_size(char **map)
 
 	max_col = 0;
 	i = 0;
-	j = 0;
 	while (map[i])
 	{
+		j = 0;
 		while (map[i][j])
 			j++;
 		if (j > max_col)
@@ -79,7 +79,7 @@ static void	cu_map_size(char **map)
 		i++;
 	}
 	data = get_pdata(NULL);
-	data->game.max_col = j;
+	data->game.max_col = max_col;
 	data->game.max_row = i;
 }
 

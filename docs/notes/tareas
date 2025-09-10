@@ -23,7 +23,6 @@
 ***-Rompe al ejecutar, sospechamos que es el parse_textures***						(Paco)[DONE]
 
 y si el mapa está abierto por fuera de una habitación cerrada donde este el PJ?		(PACO)[DONE]
-000001111000
-000001N01
-100001111
-111111111
+
+Cargar texturas (pasarla a imagen) y guardar en estructura (archivo png de ruta pasarlo a textura y almacenarla (Cris)
+Revisar parseo de valores 
