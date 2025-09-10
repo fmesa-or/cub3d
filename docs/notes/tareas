@@ -26,3 +26,9 @@ y si el mapa está abierto por fuera de una habitación cerrada donde este el PJ
 
 Cargar texturas (pasarla a imagen) y guardar en estructura (archivo png de ruta pasarlo a textura y almacenarla (Cris)
 Revisar parseo de valores 
+
+-Lanzar rayo
+-Medir colision
+-pintar rayo
+-siguiente rayo hasta terminar
+-renderizar dibujo en pantalla
