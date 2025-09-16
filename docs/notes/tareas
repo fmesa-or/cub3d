@@ -24,8 +24,11 @@
 
 y si el mapa está abierto por fuera de una habitación cerrada donde este el PJ?		(PACO)[DONE]
 
-Cargar texturas (pasarla a imagen) y guardar en estructura (archivo png de ruta pasarlo a textura y almacenarla (Cris)
-Revisar parseo de valores 
+Cargar texturas (pasarla a imagen) y guardar en estructura (archivo png de ruta pasarlo a textura y almacenarla (Cris)[DONE]
+Revisar parseo de valores 															(Cris)[DONE]
+
+
+
 
 -Lanzar rayo
 -Medir colision

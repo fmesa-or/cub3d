@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:29:47 by crmorale          #+#    #+#             */
-/*   Updated: 2025/09/08 20:02:34 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/16 20:08:54 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ int	ft_atoi_rgb(const char *str)
 		result = result * 10 + str[i] - 48;
 		i++;
 	}
+	// Skip trailing whitespace
+	while(str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+		i++;
 	if (str[i] != '\0')
 		return (-1);
 	return (result);
@@ -45,16 +48,13 @@ int	parse_rgb_line(char *line, int rgb[3])
 	char	**parts;
 	int		i;
 
-
 	// saltar espacios
 	while ((*line >= 9 && *line <= 13) || *line == 32)
 		line++;
-
 	// dividir por coma
 	parts = ft_split(line, ','); //añadir split
 	if (!parts)
 		return (0);
-
 	// comprobar que hay exactamente 3 valores
 	i = 0;
 	while (i < 3)
@@ -72,13 +72,11 @@ int	parse_rgb_line(char *line, int rgb[3])
 		}
 		i++;
 	}
-
 	if (parts[3]) // más de 3 valores -> error
 	{
 		ft_sfree_split(parts);
 		return (0);
 	}
-
 	ft_sfree_split(parts);
 	return (1);
 }

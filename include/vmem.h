@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 21:16:58 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/09/09 14:07:37 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/16 19:42:54 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_data
 	t_game		game;
 	t_mem		*mem_table[MEM_HASH_SIZE];
 	int			fd_table[1024];
+	mlx_t		*mlx;
 } t_data;
 
 /*************

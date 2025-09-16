@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 15:19:04 by crmorale          #+#    #+#             */
-/*   Updated: 2025/09/09 14:33:53 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/16 20:07:20 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,24 +88,26 @@ void	parse_textures(char **map_array, t_textinfo *tex, int *i)
 			tex->so_path = get_texture_path(line, 2);
 			tex->has_so++;
 		}
+			else if (!ft_strncmp(line, "EA", 2) && tex->has_ea == 0)
+		{
+			tex->ea_path = get_texture_path(line, 2);
+			tex->has_ea++;
+		}
 		else if (!ft_strncmp(line, "WE", 2) && tex->has_we == 0)
 		{
 			tex->we_path = get_texture_path(line, 2);
 			tex->has_we++;
 		}
-		else if (!ft_strncmp(line, "EA", 2) && tex->has_ea == 0)
-		{
-			tex->ea_path = get_texture_path(line, 2);
-			tex->has_ea++;
-		}
 		else if (*line == 'F' && tex->has_f == 0)
 		{
-			parse_rgb_line(line + 1, tex->floor);
+			if (!parse_rgb_line(line + 1, tex->floor))
+				error_msg("Error:\nInvalid floor colour value.\n");
 			tex->has_f++;
 		}
 		else if (*line == 'C' && tex->has_c == 0)
 		{
-			parse_rgb_line(line + 1, tex->ceiling);
+			if (!parse_rgb_line(line + 1, tex->ceiling))
+				error_msg("Error:\nInvalid ceiling colour value.\n");
 			tex->has_c++;
 		}
 		else if (*line == '1' || *line == '0')
