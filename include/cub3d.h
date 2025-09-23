@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 21:01:46 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/09/16 19:51:05 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/23 13:56:16 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 /**********
  * WINDOW *
  *********/
-# define WIDTH 800
-# define HEIGHT 600
+# define WIDTH 3000
+# define HEIGHT 1800
 
 /**********
  * COLORS *
@@ -36,7 +36,7 @@
 # define PR		"\033[4;95m"
 # define CI		"\033[0;96m"
 # define GR		"\033[0;92m"
-# define PI		"\033[0;94m"
+# define PINK	"\033[0;94m"
 # define FF		"\033[0;97m"
 # define RES	"\033[0m"
 

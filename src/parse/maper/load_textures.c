@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 22:20:49 by crmorale          #+#    #+#             */
-/*   Updated: 2025/09/16 20:01:03 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/23 13:22:03 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ void	load_text(t_data *data)
 		}
 		data->game.img_text[i].width = xpm->texture.width;
 		data->game.img_text[i].height = xpm->texture.height;
-		// En MLX42, los pixels se acceden directamente a través de image->pixels
+/*		// En MLX42, los pixels se acceden directamente a través de image->pixels   LO HACE AUTOMÁTICAMENTE LA MLX42
 		data->game.img_text[i].addr = (char *)((mlx_image_t*)data->game.img_text[i].img)->pixels;
 		data->game.img_text[i].bpp = 32; // MLX42 usa 32 bits por pixel (RGBA)
 		data->game.img_text[i].line_len = xpm->texture.width * 4; // 4 bytes por pixel
-		data->game.img_text[i].endian = 0; // Little endian
+		data->game.img_text[i].endian = 0; // Little endian*/
 		mlx_delete_xpm42(xpm); // Liberar el XPM temporal
 		i++;
 	}
@@ -73,10 +73,10 @@ int main(void)
 void	init_img_struct(t_img_text *img_text)
 {
 	img_text->img = NULL;
-	img_text->addr = NULL;
+//	img_text->addr = NULL;
 	img_text->width = 0;
 	img_text->height = 0;
-	img_text->bpp = 0;
-	img_text->line_len = 0;
-	img_text->endian = 0;
+//	img_text->bpp = 0;
+//	img_text->line_len = 0;
+//	img_text->endian = 0;
 }

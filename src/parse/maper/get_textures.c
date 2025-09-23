@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 15:19:04 by crmorale          #+#    #+#             */
-/*   Updated: 2025/09/16 20:07:20 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/23 13:06:31 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ char	*get_texture_path(char *line, int j)
 	while (line[len] && !ft_isspace(line[len]) && line[len] != '\n')
 		len++;
 	path = smalloc(sizeof(char) * (len - j + 1));
-	if (!path)
-		return (NULL);
 	i = 0;
 	while (j < len)
 		path[i++] = line[j++];

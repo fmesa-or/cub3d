@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 20:49:40 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/09/16 19:47:54 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/23 14:02:38 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_textinfo
  * line_len	->
  * endian	->
  *******************/
-typedef struct s_img_text
+/*typedef struct s_img_text
 {
 	void	*img;
 	char	*addr;
@@ -62,7 +62,31 @@ typedef struct s_img_text
 	int		line_len;
 	int		endian;
 
+}t_img_text;*/
+
+//struct para MLX42
+typedef struct s_img_text
+{
+	mlx_image_t	*img;
+	int			width;
+	int			height;
 }t_img_text;
+
+
+/***************************************************************************
+ * x & y	-> Actual position in the map.                                 *
+ * dirX/Y	-> Actual direction of camera.                                 *
+ * planeX/Y	-> Camera plane, so we can calculate the size of the viewfield.*
+ **************************************************************************/
+typedef struct s_player
+{
+	int		x;
+	int		y;
+	int		dirX;
+	int		dirY;
+	int		planeX;
+	int		planeY;
+} t_player;
 
 /*****************************************************************
  * Main structure with the game info
@@ -83,6 +107,7 @@ typedef struct s_game
 	char		spawn_dir;
 	int			max_col;
 	int			max_row;
+	t_player	player;
 } t_game;
 
 
