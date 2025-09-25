@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 21:01:46 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/09/23 13:56:16 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/25 12:08:31 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,6 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdbool.h>
-
-
-
-/**********
- * WINDOW *
- *********/
-# define WIDTH 3000
-# define HEIGHT 1800
 
 /**********
  * COLORS *
