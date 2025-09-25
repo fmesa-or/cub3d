@@ -6,7 +6,7 @@
 #    By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/30 20:48:10 by fmesa-or          #+#    #+#              #
-#    Updated: 2025/09/16 19:41:57 by fmesa-or         ###   ########.fr        #
+#    Updated: 2025/09/25 13:03:31 by fmesa-or         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,8 +48,8 @@ COLOR_HEADER = \033[1;35m
 
 # Progress bar variables
 TOTAL_FILES := $(words $(SRCS))
-CURRENT_FILE := 0
 BAR_LENGTH := 30
+COUNTER_FILE := .build_counter
 
 # Header art
 define HEADER_ART
@@ -72,18 +72,21 @@ header:
 $(NAME): $(MLX42) $(OBJS)
 	@printf "\n$(COLOR_INFO)Building executable...$(COLOR_RESET)"; \
 	$(CC) $(OBJS) $(MLX42) $(HEADERS) $(MLX42_FLAGS) -o $(NAME) -lreadline; \
-	printf "\r\033[K$(COLOR_SUCCESS)✅ $(NAME) is ready!$(COLOR_RESET)\n"
+	printf "\r\033[K$(COLOR_SUCCESS)✅ $(NAME) is ready!$(COLOR_RESET)\n"; \
+	rm -f $(COUNTER_FILE)
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
-	@printf "$(COLOR_INFO) Building CUB3D $(COLOR_RESET) [                    ] 0%%"
 	@mkdir -p $(dir $@)
-	@$(eval CURRENT_FILE=$(shell echo $$(($(CURRENT_FILE)+1))))
-	@$(eval PROGRESS=$(shell echo $$(($(CURRENT_FILE)*$(BAR_LENGTH)/$(TOTAL_FILES)))))
-	@$(eval PERCENT=$(shell echo $$(($(CURRENT_FILE)*100/$(TOTAL_FILES)))))
-	@printf "\r$(COLOR_INFO) Building CUB3D: [$(COLOR_PROGRESS)"
-	@for i in $$(seq 1 $(PROGRESS)); do printf "█"; done
-	@for i in $$(seq 1 $$(($(BAR_LENGTH)-$(PROGRESS)))); do printf " "; done
-	@printf "$(COLOR_INFO)] %3d%%$(COLOR_RESET)" $(PERCENT)
+	@if [ ! -f $(COUNTER_FILE) ]; then echo "0" > $(COUNTER_FILE); fi
+	@CURRENT=$$(cat $(COUNTER_FILE)); \
+	CURRENT=$$((CURRENT + 1)); \
+	echo $$CURRENT > $(COUNTER_FILE); \
+	PROGRESS=$$((CURRENT * $(BAR_LENGTH) / $(TOTAL_FILES))); \
+	PERCENT=$$((CURRENT * 100 / $(TOTAL_FILES))); \
+	printf "\r$(COLOR_INFO) Building CUB3D: [$(COLOR_PROGRESS)"; \
+	for i in $$(seq 1 $$PROGRESS); do printf "█"; done; \
+	for i in $$(seq 1 $$(($(BAR_LENGTH) - PROGRESS))); do printf " "; done; \
+	printf "$(COLOR_INFO)] %3d%%$(COLOR_RESET)" $$PERCENT
 	@$(CC) $(CFLAGS) -c $< -o $@ $(HEADERS)
 
 $(MLX42):
@@ -97,6 +100,7 @@ $(MLX42):
 clean:
 	@printf "$(COLOR_INFO)Cleaning object files...$(COLOR_RESET)"
 	@$(CLEAN) $(OBJS_DIR)
+	@rm -f $(COUNTER_FILE)
 	@printf "\r$(COLOR_SUCCESS)✅ Object files cleaned successfully!$(COLOR_RESET)\n"
 
 clean_mlx:
@@ -107,6 +111,7 @@ clean_mlx:
 fclean: clean clean_mlx
 	@printf "$(COLOR_INFO)Deleting $(NAME)...$(COLOR_RESET)"
 	@$(CLEAN) $(NAME)
+	@rm -f $(COUNTER_FILE)
 	@printf "\r$(COLOR_SUCCESS)✅ $(NAME) deleted successfully!$(COLOR_RESET)\n"
 
 re: fclean all

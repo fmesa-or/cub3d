@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 21:01:46 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/09/25 12:08:31 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/25 12:56:16 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,11 @@ void	check_player_pos(t_game *game);
 void	save_player_pos(int i, int j, char dir, t_game *game);
 void	check_and_parse_file(char *file_name, t_data *data);
 void	cu_filledmaper(t_game game);
+
+/**
+ * EXECUTION
+ */
+void	cu_init_player(t_player *player, t_game *game);
 
 
 #endif
