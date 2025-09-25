@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 21:01:46 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/09/25 12:56:16 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/25 13:42:12 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ void	cu_filledmaper(t_game game);
  * EXECUTION
  */
 void	cu_init_player(t_player *player, t_game *game);
+void	cu_cast_rays(t_data *data);
+
 
 
 #endif
