@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:27:16 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/09/25 13:59:38 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/25 14:55:24 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,18 @@ void	cu_cast_rays(t_data *data)
 	x = 0;
 	while (x < S_WIDTH)
 	{
+		// PASO 1: Calcular dirección del rayo
 		cameraX = ((2 * (x / (double)S_WIDTH)) - 1);
 		rayDirX = data->game.player.dirX + data->game.player.planeX * cameraX;
 		rayDirY = data->game.player.dirY + data->game.player.planeY * cameraX;
 
-		// DEBUG: Imprimir algunos rayos para ver los valores /////////////////
-		if (x % 200 == 0)  // Cada 200 píxeles
-		{
-			printf("Pixel %d: cameraX=%.3f, rayDirX=%.3f, rayDirY=%.3f\n", 
-				x, cameraX, rayDirX, rayDirY);
-		}
-		///////////////////////////////////////////////////////////////////////
+		// PASO 2: Encontrar que tiene más cerca el rayo, si el x o el y del grid.
 
-		//TODO: Aquí iría el DDA (siguiente paso);
+		// PASO 3: Avanzar hasta encontrar la primera colisión con un muro. Solo necesitamos avanzar por la hipotenusa del triangulo que hemos sacado en el paso anterior, ya que avanzará todo el rato lo mismo al ser un grid.
+
+		// PASO 4: calcular distancia.
+
+		//TODO: sideDist (siguiente paso);
 		x++;
 	}
 

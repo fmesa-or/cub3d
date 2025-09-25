@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 21:01:46 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/09/25 13:42:12 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/25 14:44:00 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdbool.h>
+# include <math.h>
 
 /**********
  * COLORS *
