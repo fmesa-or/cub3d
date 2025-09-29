@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 22:20:49 by crmorale          #+#    #+#             */
-/*   Updated: 2025/09/23 13:22:03 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/29 15:35:48 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,28 @@ void	load_text(t_data *data)
 	i = 0;
 	while (i < TEXT_COUNT)
 	{
+		printf("DEBUG: Attempting to load texture: %s\n", paths[i]);
+		
+		// Verificar si el archivo existe antes de intentar cargarlo
+		if (access(paths[i], F_OK) != 0)
+		{
+			printf("ERROR: File does not exist: %s\n", paths[i]);
+			error_msg("Error\nTexture file not found.\n");
+		}
+		
 		xpm = mlx_load_xpm42(paths[i]);
 		if (!xpm)
+		{
+			printf("ERROR: mlx_load_xpm42 failed for file: %s\n", paths[i]);
+			printf("MLX42 Error: %s\n", mlx_strerror(mlx_errno));
 			error_msg("Error\nCannot load XPM texture.\n");
+		}
+		
 		data->game.img_text[i].img = mlx_texture_to_image(data->mlx, &xpm->texture);
 		if (!data->game.img_text[i].img)
 		{
 			mlx_delete_xpm42(xpm);
+			printf("ERROR: mlx_texture_to_image failed for file: %s\n", paths[i]);
 			error_msg("Error\nCannot convert texture to image.\n");
 		}
 		data->game.img_text[i].width = xpm->texture.width;

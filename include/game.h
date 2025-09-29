@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 20:49:40 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/09/25 13:58:14 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/29 14:47:10 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,37 @@ typedef struct s_img_text
 	int			height;
 } t_img_text;
 
+/**
+ * RAYS
+ * 
+ * rayDirX/Y	-> The direction of the ray.
+ * deltaDistX/Y	-> Length for crossing one unit of the grid.
+ * sideDistX/Y	-> Distance from current position to next grid line.
+ * mapX/Y		-> Current grid coordinates (integer) where the ray is located.
+ * stepX/Y		-> Direction to advance in the grid (-1 or +1).
+ * side			-> Which wall side was hit (0=vertical, 1=horizontal).
+ * drawStart	-> Top pixel to start drawing the wall line.
+ * drawEnd		-> Bottom pixel to end drawing the wall line.
+ */
+typedef struct s_ray
+{
+	double	rayDirX;
+	double	rayDirY;
+	double	deltaDistX;
+	double	deltaDistY;
+	double	sideDistX;
+	double	sideDistY;
+	int		mapX;
+	int		mapY;
+	int		stepX;
+	int		stepY;
+	int		side;
+	int		drawStart;
+	int		drawEnd;
+	int		lineHeight;
+	double	perpWallDist;
+} t_ray;
+
 /***************************************************************************
  * PLAYER                                                                  *
  *                                                                         *
@@ -107,6 +138,7 @@ typedef struct s_player
  * spawn_dir	-> The direction of the camera; // 'N', 'S', 'E', 'W'*
  * max_col/row	-> Value with the total number of columns/rows.      *
  * player		-> Struct with player info.                          *
+ * ray		-> Ray struct.                                           *
  ********************************************************************/
 typedef struct s_game
 {
@@ -119,6 +151,7 @@ typedef struct s_game
 	int			max_col;
 	int			max_row;
 	t_player	player;
+	t_ray		ray;
 } t_game;
 
 # endif
