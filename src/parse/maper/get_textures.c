@@ -6,39 +6,24 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 15:19:04 by crmorale          #+#    #+#             */
-/*   Updated: 2025/09/29 15:35:48 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/30 12:44:31 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int check_xpm(char *path)
+int check_png(char *path)
 {
 	int len = 0;
 	while (path[len])
 		len++;
-	
-	// Verificar .xpm42 primero (5 caracteres)
-	if (len >= 6)
-	{
-		if (path[len - 6] == '.' && path[len - 5] == 'x' &&
-			path[len - 4] == 'p' && path[len - 3] == 'm' &&
-			path[len - 2] == '4' && path[len - 1] == '2')
-			return 1;
-	}
-	
-	// Verificar .xpm (4 caracteres)
-	if (len >= 4)
-	{
-		if (path[len - 4] == '.' && path[len - 3] == 'x' &&
-			path[len - 2] == 'p' && path[len - 1] == 'm')
-			return 1;
-	}
-	
-	return 0;
+	if (len < 4)
+		return 0;
+	return (path[len - 4] == '.' && path[len - 3] == 'p' &&
+				path[len - 2] == 'n' && path[len - 1] == 'g');
 }
 
-int check_tex_path(char *path)
+int	check_tex_path(char *path)
 {
 	int fd = sopen(path, O_RDONLY, -1);
 	if (fd < 0)
@@ -47,11 +32,11 @@ int check_tex_path(char *path)
 	return 1;
 }
 
-int valid_tex(char *path)
+int	valid_tex(char *path)
 {
 	if (!path)
 		return (0);
-	return (check_tex_path(path) && check_xpm(path));
+	return (check_tex_path(path) && check_png(path));
 }
 
 char	*get_texture_path(char *line, int j)

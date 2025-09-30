@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 22:20:49 by crmorale          #+#    #+#             */
-/*   Updated: 2025/09/29 15:35:48 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/30 13:00:16 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,33 @@ void	prepare_text_paths(t_game *game, char *paths[TEXT_COUNT])
 	paths[TEXT_WE] = game->textures->we_path;
 }
 
+void	load_text(t_data *data)
+{
+	char	*paths[TEXT_COUNT];
+	int 	i;
+	mlx_texture_t	*textures;
+	
+	prepare_text_paths(&data->game, paths);
+	i = 0;
+	while (i < TEXT_COUNT)
+	{
+		textures = mlx_load_png(paths[i]);
+		if (!textures)
+			error_msg("Error\nCannot load XPM texture.\n");
+		data->game.img_text[i].img = mlx_texture_to_image(data->mlx, textures);
+		if (!data->game.img_text[i].img)
+		{
+			mlx_delete_texture(textures);
+			error_msg("Error\nCannot convert texture to image.\n");
+		}
+		data->game.img_text[i].width = textures->width;
+		data->game.img_text[i].height = textures->height;
+		mlx_delete_texture(textures); // Liberar el XPM temporal
+		i++;
+	}
+}
+
+/* V.02
 void	load_text(t_data *data)
 {
 	char	*paths[TEXT_COUNT];
@@ -56,15 +83,15 @@ void	load_text(t_data *data)
 		}
 		data->game.img_text[i].width = xpm->texture.width;
 		data->game.img_text[i].height = xpm->texture.height;
-/*		// En MLX42, los pixels se acceden directamente a través de image->pixels   LO HACE AUTOMÁTICAMENTE LA MLX42
-		data->game.img_text[i].addr = (char *)((mlx_image_t*)data->game.img_text[i].img)->pixels;
-		data->game.img_text[i].bpp = 32; // MLX42 usa 32 bits por pixel (RGBA)
-		data->game.img_text[i].line_len = xpm->texture.width * 4; // 4 bytes por pixel
-		data->game.img_text[i].endian = 0; // Little endian*/
+		// En MLX42, los pixels se acceden directamente a través de image->pixels   LO HACE AUTOMÁTICAMENTE LA MLX42
+//		data->game.img_text[i].addr = (char *)((mlx_image_t*)data->game.img_text[i].img)->pixels;
+//		data->game.img_text[i].bpp = 32; // MLX42 usa 32 bits por pixel (RGBA)
+//		data->game.img_text[i].line_len = xpm->texture.width * 4; // 4 bytes por pixel
+//		data->game.img_text[i].endian = 0; // Little endian
 		mlx_delete_xpm42(xpm); // Liberar el XPM temporal
 		i++;
 	}
-}
+}*/
 /*
 MIRAR ESTO PARA CARGAR FUNCION DE LOAD_TEXT Y MLX
 int main(void)

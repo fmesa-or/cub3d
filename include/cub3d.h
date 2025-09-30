@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 21:01:46 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/09/29 15:12:08 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/30 13:14:00 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <fcntl.h>
 # include <stdbool.h>
 # include <math.h>
+# include <limits.h>
 
 /**********
  * COLORS *
@@ -71,7 +72,7 @@ void	error_msg(char *msg);
  * CHECK FILE
  */
 void	check_file(char *av);
-int		check_extension(char *file_name);
+void	check_extension(char *file_name);
 
 /**
  * MAP PARSING AND VALIDATION
@@ -84,7 +85,7 @@ void	parse_textures(char **map_array, t_textinfo *tex, int *i);
 int		parse_rgb_line(char *line, int rgb[3]);
 void	init_textinfo(t_textinfo *info);
 void	cu_checkmap(t_data *data);
-int		check_xpm(char *path);
+int		check_png(char *path);
 int		ft_atoi_rgb(const char *str);
 int		valid_rgb_value(int n);
 int		check_tex_path(char *path);
@@ -96,6 +97,8 @@ void	save_player_pos(int i, int j, char dir, t_game *game);
 void	check_and_parse_file(char *file_name, t_data *data);
 void	cu_filledmaper(t_game game);
 void	load_text(t_data *data);
+uint32_t	get_hex_color(int rgb[3]);
+
 
 /**
  * EXECUTION

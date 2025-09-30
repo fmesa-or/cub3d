@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 14:36:00 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/09/29 15:09:19 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/09/30 13:11:50 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,11 @@ void	cu_picasso(t_data *data, mlx_image_t *screen, int x)
 		texX = texture->width - 1;
 	if (texX < 0)
 		texX = 0;
-
-	// 3. Dibujar cada pixel Y de la pared
+	//3.1. Pintar el techo
+	y = -1;
+	while (++y < data->game.ray.drawStart)
+		mlx_put_pixel(screen, x, y, get_hex_color(data->game.textures->ceiling));
+	// 3.2. Dibujar cada pixel Y de la pared
 	y = data->game.ray.drawStart;
 	while (y <= data->game.ray.drawEnd)
 	{
@@ -78,6 +81,12 @@ void	cu_picasso(t_data *data, mlx_image_t *screen, int x)
 			
 		color = ((uint32_t*)texture->pixels)[texY * texture->width + texX];
 		mlx_put_pixel(screen, x, y, color);
+		y++;
+	}
+	//3.3. Pintar suelo
+	while (y < S_HEIGHT)
+	{
+		mlx_put_pixel(screen, x, y, get_hex_color(data->game.textures->floor));
 		y++;
 	}
 }
