@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 20:49:40 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/09/29 14:47:10 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/01 13:54:19 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,16 @@ typedef struct s_player
 	double		planeY;
 } t_player;
 
+typedef struct s_keys
+{
+	int w_pressed;	// Avanzar
+	int s_pressed;	// Retroceder
+	int a_pressed;	// Strafe izquierda
+	int d_pressed;	// Strafe derecha
+	int left_pressed;// Mirar izquierda
+	int right_pressed;// Mirar derecha
+} t_keys;
+
 /*********************************************************************
  * MAIN STRUCTURE                                                    *
  *                                                                   *
@@ -138,7 +148,8 @@ typedef struct s_player
  * spawn_dir	-> The direction of the camera; // 'N', 'S', 'E', 'W'*
  * max_col/row	-> Value with the total number of columns/rows.      *
  * player		-> Struct with player info.                          *
- * ray		-> Ray struct.                                           *
+ * ray			-> Ray struct.                                       *
+ * screen		-> Where we draw.                                    *
  ********************************************************************/
 typedef struct s_game
 {
@@ -152,6 +163,8 @@ typedef struct s_game
 	int			max_row;
 	t_player	player;
 	t_ray		ray;
+	mlx_image_t	*screen;
+	t_keys		keys;
 } t_game;
 
 # endif

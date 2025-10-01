@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 21:01:46 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/09/30 13:14:00 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/01 13:56:39 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,15 @@ uint32_t	get_hex_color(int rgb[3]);
 void	cu_init_player(t_player *player, t_game *game);
 void	cu_cast_rays(t_data *data, mlx_image_t *screen);
 void	cu_picasso(t_data *data, mlx_image_t *screen, int x);
+
+
+
+/**
+ * HOOKS
+ */
+void	key_hook(mlx_key_data_t keydata, void *param);
+void	handle_key_release(t_game *game, int key);
+void	handle_key_press(t_game *game, int key);
 
 
 #endif

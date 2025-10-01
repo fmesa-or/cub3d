@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 22:20:49 by crmorale          #+#    #+#             */
-/*   Updated: 2025/09/30 13:00:16 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/01 12:50:09 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	load_text(t_data *data)
 	{
 		textures = mlx_load_png(paths[i]);
 		if (!textures)
-			error_msg("Error\nCannot load XPM texture.\n");
+			error_msg("Error\nCannot load PNG texture.\n");
 		data->game.img_text[i].img = mlx_texture_to_image(data->mlx, textures);
 		if (!data->game.img_text[i].img)
 		{
@@ -41,7 +41,7 @@ void	load_text(t_data *data)
 		}
 		data->game.img_text[i].width = textures->width;
 		data->game.img_text[i].height = textures->height;
-		mlx_delete_texture(textures); // Liberar el XPM temporal
+		mlx_delete_texture(textures); // Liberar el PNG temporal
 		i++;
 	}
 }
