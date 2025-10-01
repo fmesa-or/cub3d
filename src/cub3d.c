@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 21:01:23 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/10/01 14:01:04 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/01 14:11:39 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	main(int ac, char **av)
 	data.mlx = mlx_init(S_WIDTH, S_HEIGHT, "CUB3D", true);
 	if (!data.mlx)
 	{
-		fprintf(stderr, "Error: MLX42 init failed.\n");
+		fprintf(stderr, "Error\nMLX42 init failed.\n");
 		return (EXIT_FAILURE);
 	}
 	// 4. RENDER

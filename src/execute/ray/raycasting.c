@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:27:16 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/10/01 11:49:12 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/01 14:15:23 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,18 +94,23 @@ static void	cu_dda_sizer(t_data *data)
 	data->game.ray.mapX = (int)data->game.player.x;
 	data->game.ray.mapY = (int)data->game.player.y;
 
-	if (data->game.ray.rayDirX < 0) {
+	if (data->game.ray.rayDirX < 0)
+	{
 		data->game.ray.stepX = -1;
 		data->game.ray.sideDistX = (data->game.player.x - data->game.ray.mapX) * data->game.ray.deltaDistX;
-	} else {
+	}
+	else
+	{
 		data->game.ray.stepX = 1;
 		data->game.ray.sideDistX = (data->game.ray.mapX + 1.0 - data->game.player.x) * data->game.ray.deltaDistX;
 	}
 
-	if (data->game.ray.rayDirY < 0) {
+	if (data->game.ray.rayDirY < 0) 
+	{
 		data->game.ray.stepY = -1;
 		data->game.ray.sideDistY = (data->game.player.y - data->game.ray.mapY) * data->game.ray.deltaDistY;
-	} else {
+	} 
+	else {
 		data->game.ray.stepY = 1;
 		data->game.ray.sideDistY = (data->game.ray.mapY + 1.0 - data->game.player.y) * data->game.ray.deltaDistY;
 	}

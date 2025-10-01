@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 14:36:00 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/09/30 13:11:50 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/01 14:22:57 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	cu_picasso(t_data *data, mlx_image_t *screen, int x)
 	y = -1;
 	while (++y < data->game.ray.drawStart)
 		mlx_put_pixel(screen, x, y, get_hex_color(data->game.textures->ceiling));
-	// 3.2. Dibujar cada pixel Y de la pared
+	// 3.2. Dibujar cada pixel "Y" de la pared (en cada "y" pintará cada "x" una a una)
 	y = data->game.ray.drawStart;
 	while (y <= data->game.ray.drawEnd)
 	{

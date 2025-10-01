@@ -29,11 +29,12 @@ Revisar parseo de valores 															(Cris)[DONE]
 
 
 -Iniciar Player																		(Paco)[DONE]
--Hooks controles																	(Cris)[]
--Engine Raycasting																	(Paco)[DONE]
--Sistema Render																		()
--Controles																			()
--Cargar Texturas																	()[]
+-Hooks controles																	(Cris)[DONE]
+-Sistema Render																		(Paco)[DONE]
+-Movimiento																			(Cris)[]
+-Cargar Texturas																	(Cris)[DONE]
+-Wall collisions																	()[]
+
 
 
 PRIORIDAD PARA PACO!! Arreglar para que funcione con PNG, actualmente funciona con XPM42
