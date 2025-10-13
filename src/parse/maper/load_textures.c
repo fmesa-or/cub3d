@@ -6,12 +6,16 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 22:20:49 by crmorale          #+#    #+#             */
-/*   Updated: 2025/10/01 12:50:09 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/13 22:43:46 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/********************************************************
+ * Organizes texture paths into array for batch loading.*
+ * Maps NO, SO, EA, WE paths to indexed array structure.*
+ *******************************************************/
 void	prepare_text_paths(t_game *game, char *paths[TEXT_COUNT])
 {
 	paths[TEXT_NO] = game->textures->no_path;
@@ -20,12 +24,17 @@ void	prepare_text_paths(t_game *game, char *paths[TEXT_COUNT])
 	paths[TEXT_WE] = game->textures->we_path;
 }
 
+/******************************************************
+ * Loads PNG textures into MLX42 images for rendering.*
+ * Converts textures to images and stores dimensions. *
+ * Handles texture loading errors and memory cleanup. *
+ *****************************************************/
 void	load_text(t_data *data)
 {
-	char	*paths[TEXT_COUNT];
-	int 	i;
+	char			*paths[TEXT_COUNT];
+	int				i;
 	mlx_texture_t	*textures;
-	
+
 	prepare_text_paths(&data->game, paths);
 	i = 0;
 	while (i < TEXT_COUNT)
@@ -41,84 +50,7 @@ void	load_text(t_data *data)
 		}
 		data->game.img_text[i].width = textures->width;
 		data->game.img_text[i].height = textures->height;
-		mlx_delete_texture(textures); // Liberar el PNG temporal
+		mlx_delete_texture(textures);
 		i++;
 	}
-}
-
-/* V.02
-void	load_text(t_data *data)
-{
-	char	*paths[TEXT_COUNT];
-	int 	i;
-	xpm_t	*xpm;
-	
-	prepare_text_paths(&data->game, paths);
-	i = 0;
-	while (i < TEXT_COUNT)
-	{
-		printf("DEBUG: Attempting to load texture: %s\n", paths[i]);
-		
-		// Verificar si el archivo existe antes de intentar cargarlo
-		if (access(paths[i], F_OK) != 0)
-		{
-			printf("ERROR: File does not exist: %s\n", paths[i]);
-			error_msg("Error\nTexture file not found.\n");
-		}
-		
-		xpm = mlx_load_xpm42(paths[i]);
-		if (!xpm)
-		{
-			printf("ERROR: mlx_load_xpm42 failed for file: %s\n", paths[i]);
-			printf("MLX42 Error: %s\n", mlx_strerror(mlx_errno));
-			error_msg("Error\nCannot load XPM texture.\n");
-		}
-		
-		data->game.img_text[i].img = mlx_texture_to_image(data->mlx, &xpm->texture);
-		if (!data->game.img_text[i].img)
-		{
-			mlx_delete_xpm42(xpm);
-			printf("ERROR: mlx_texture_to_image failed for file: %s\n", paths[i]);
-			error_msg("Error\nCannot convert texture to image.\n");
-		}
-		data->game.img_text[i].width = xpm->texture.width;
-		data->game.img_text[i].height = xpm->texture.height;
-		// En MLX42, los pixels se acceden directamente a través de image->pixels   LO HACE AUTOMÁTICAMENTE LA MLX42
-//		data->game.img_text[i].addr = (char *)((mlx_image_t*)data->game.img_text[i].img)->pixels;
-//		data->game.img_text[i].bpp = 32; // MLX42 usa 32 bits por pixel (RGBA)
-//		data->game.img_text[i].line_len = xpm->texture.width * 4; // 4 bytes por pixel
-//		data->game.img_text[i].endian = 0; // Little endian
-		mlx_delete_xpm42(xpm); // Liberar el XPM temporal
-		i++;
-	}
-}*/
-/*
-MIRAR ESTO PARA CARGAR FUNCION DE LOAD_TEXT Y MLX
-int main(void)
-{
-    t_data data;
-
-    data.mlx = mlx_init();
-    if (!data.mlx)
-        return (1);
-    data.win = mlx_new_window(data.mlx, 800, 600, "cub3D");
-
-    // parseas archivo, rellenas data.game.textures con rutas
-    load_textures(&data); // ahora todo vive en t_data
-
-    mlx_loop(data.mlx);
-}*/
-
-//AÑADIDA ESTRUC IMG_TEX EN GAME Y VOID *MLX Y *WIN EN DATA)
-//INICIALIZAR ESTRUCTURA IMG_TEXT:
-
-void	init_img_struct(t_img_text *img_text)
-{
-	img_text->img = NULL;
-//	img_text->addr = NULL;
-	img_text->width = 0;
-	img_text->height = 0;
-//	img_text->bpp = 0;
-//	img_text->line_len = 0;
-//	img_text->endian = 0;
 }

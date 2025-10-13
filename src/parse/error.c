@@ -6,15 +6,16 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 20:01:23 by crmorale          #+#    #+#             */
-/*   Updated: 2025/08/20 21:37:13 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/14 00:11:16 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/**
- * 
- */
+/***********************************************
+ * Writes error message to stderr and exits.   *
+ * Displays the message and terminates program.*
+ **********************************************/
 void	error_msg(char *msg)
 {
 	write(2, msg, ft_strlen(msg));

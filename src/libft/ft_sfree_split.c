@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 20:31:11 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/08/26 20:32:30 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/14 00:25:12 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	ft_sfree_split(char **array)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	if (!array)
 		return ;
 	while (array[i])

@@ -6,13 +6,16 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:42:11 by crmorale          #+#    #+#             */
-/*   Updated: 2025/09/10 12:52:35 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/14 00:21:37 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-
+/*********************************************************
+ * Saves player spawn position and direction in game.   *
+ * Stores coordinates and facing direction for startup.  *
+ ********************************************************/
 void	save_player_pos(int i, int j, char dir, t_game *game)
 {
 	game->spawn_x = j;
@@ -20,18 +23,22 @@ void	save_player_pos(int i, int j, char dir, t_game *game)
 	game->spawn_dir = dir;
 }
 
-void check_player_pos(t_game *game)
+/************************************************************
+ * Scans the entire map to find player starting position.  *
+ * Searches for N/S/E/W characters and saves their coords. *
+ ***********************************************************/
+void	check_player_pos(t_game *game)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	while (game->map[i])
 	{
 		j = 0;
 		while (game->map[i][j])
 		{
-			if (game->map[i][j] == 'N') 
+			if (game->map[i][j] == 'N')
 				save_player_pos(i, j, 'N', game);
 			else if (game->map[i][j] == 'S')
 				save_player_pos(i, j, 'S', game);
@@ -45,19 +52,21 @@ void check_player_pos(t_game *game)
 	}
 }
 
+/***************************************************************
+ * Main parsing function that processes the .cub file.        *
+ * Validates file, parses textures, map, and player position. *
+ **************************************************************/
 void	check_and_parse_file(char *file_name, t_data *data)
 {
-
 	char	**map_array;
 	int		i;
 
 	i = 0;
-	// Asignar memoria para las texturas antes de inicializar
 	data->game.textures = smalloc(sizeof(t_textinfo));
 	init_textinfo(data->game.textures);
 	check_file(file_name);
 	map_array = read_file(file_name);
-	parse_textures(map_array, data->game.textures, &i);//REVISAR ROMPE AL EJECUTAR
+	parse_textures(map_array, data->game.textures, &i);
 	cu_parse_map(map_array, i);
 	cu_checkmap(data);
 	check_player_pos(&data->game);

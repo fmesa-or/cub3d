@@ -1,8 +1,8 @@
 1. Inicialización del Player (15-30 min)
 
 Configurar player.x, player.y desde spawn_x, spawn_y
-Establecer dirX, dirY según spawn_dir (N/S/E/W)
-Calcular planeX, planeY para FOV
+Establecer dir_x, dir_y según spawn_dir (N/S/E/W)
+Calcular plane_x, plane_y para FOV
 2. Engine de Raycasting (90-120 min)
 
 Implementar algoritmo DDA básico

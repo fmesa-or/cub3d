@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 13:28:43 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/10/13 19:33:49 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/14 00:56:54 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	handle_key_press(t_game *game, int key)
 		game->keys.left_pressed = 1;
 	else if (key == MLX_KEY_RIGHT)
 		game->keys.right_pressed = 1;
-	printf("KEY PRESSED\n");
 }
 
 /**********************************************************
@@ -51,7 +50,6 @@ void	handle_key_release(t_game *game, int key)
 		game->keys.left_pressed = 0;
 	else if (key == MLX_KEY_RIGHT)
 		game->keys.right_pressed = 0;
-	printf("KEY RELEASED\n");
 }
 
 /***********************************************************

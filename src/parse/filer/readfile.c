@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 21:25:11 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/10/13 21:23:13 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/14 00:55:50 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	**read_file(const char *filename)
 		return (NULL);
 	array = smalloc(sizeof(char *));
 	if (!array)
-		error_msg("ERROR\nreadfile.c: read_file: 56: failed to save array.");
+		error_msg("Error\nreadfile.c: read_file: 56: failed to save array.\n");
 	array[0] = NULL;
 	sub_read_file(fd, &array);
 	sclose(fd);

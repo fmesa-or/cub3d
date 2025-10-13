@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 17:29:06 by crmorale          #+#    #+#             */
-/*   Updated: 2025/10/13 20:22:14 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/14 00:57:10 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,10 @@ void	move_player_safe(t_data *data, double new_x, double new_y)
 	if (!check_wall_collision(data, new_x, data->game.player.y))
 	{
 		data->game.player.x = new_x;
-		printf("Player X: %.2f\n", data->game.player.x);
 	}
 	if (!check_wall_collision(data, data->game.player.x, new_y))
 	{
 		data->game.player.y = new_y;
-		printf("Player Y: %.2f\n", data->game.player.y);
 	}
 }
 
@@ -64,16 +62,16 @@ void	rotate_player(t_data *data, double angle)
 	double	old_dir_x;
 	double	old_plane_x;
 
-	old_dir_x = data->game.player.dirX;
-	data->game.player.dirX = data->game.player.dirX * cos(angle)
-		- data->game.player.dirY * sin(angle);
-	data->game.player.dirY = old_dir_x * sin(angle)
-		+ data->game.player.dirY * cos(angle);
-	old_plane_x = data->game.player.planeX;
-	data->game.player.planeX = data->game.player.planeX * cos(angle)
-		- data->game.player.planeY * sin(angle);
-	data->game.player.planeY = old_plane_x * sin(angle)
-		+ data->game.player.planeY * cos(angle);
+	old_dir_x = data->game.player.dir_x;
+	data->game.player.dir_x = data->game.player.dir_x * cos(angle)
+		- data->game.player.dir_y * sin(angle);
+	data->game.player.dir_y = old_dir_x * sin(angle)
+		+ data->game.player.dir_y * cos(angle);
+	old_plane_x = data->game.player.plane_x;
+	data->game.player.plane_x = data->game.player.plane_x * cos(angle)
+		- data->game.player.plane_y * sin(angle);
+	data->game.player.plane_y = old_plane_x * sin(angle)
+		+ data->game.player.plane_y * cos(angle);
 }
 
 /***********************************************************

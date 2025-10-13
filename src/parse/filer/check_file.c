@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 20:08:24 by crmorale          #+#    #+#             */
-/*   Updated: 2025/10/13 20:50:47 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/14 00:56:06 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	check_extension(char *file_name)
 	int	len;
 
 	if (!file_name)
-		error_msg("Error:\nNULL file_name.\n");
+		error_msg("Error\nNULL file_name.\n");
 	len = ft_strlen(file_name);
 	if (len <= 4)
-		error_msg("Error\nInvalid file extension. Expected .cub file.");
+		error_msg("Error\nInvalid file extension. Expected .cub file.\n");
 	if (!(file_name[len - 1] == 'b' && file_name[len - 2] == 'u'
 			&& file_name[len - 3] == 'c' && file_name[len - 4] == '.'))
-		error_msg("Error\nInvalid file extension. Expected .cub file.");
+		error_msg("Error\nInvalid file extension. Expected .cub file.\n");
 }
 
 /*************************************************

@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 11:47:06 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/10/13 20:48:39 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/14 00:52:31 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	sexit(int code)
 void	alloc_fail(int type)
 {
 	if (type == NO_MEMORY)
-		error_msg("ERROR\nVMEM: No memory left on the device\n");
+		error_msg("Error\nVMEM: No memory left on the device\n");
 	sexit(1);
 }
 

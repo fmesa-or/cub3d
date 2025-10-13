@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:29:47 by crmorale          #+#    #+#             */
-/*   Updated: 2025/10/13 21:55:42 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/14 00:22:58 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int	ft_atoi_rgb(const char *str)
 		return (-1);
 	if (str[i] == '-' || str[i] == '+')
 		return (-1);
-	while (str[i] >= 48 && str[i] <= 57) 
+	while (str[i] >= 48 && str[i] <= 57)
 	{
-		if (result > (INT_MAX - (str[i] - 48)) / 10) // Detectar Overflow
+		if (result > (INT_MAX - (str[i] - 48)) / 10)
 			return (-1);
 		result = result * 10 + str[i] - 48;
 		i++;

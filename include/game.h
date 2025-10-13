@@ -5,10 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/13 20:49:40 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/10/01                                                     */
-/* ***********************13:54:19 by fmesa-or         ###   ########.fr       */
-/*                        *************************************************** */
+/*   Created: 2025/10/14 00:34:02 by fmesa-or          #+#    #+#             */
+/*   Updated: 2025/10/14 00:48:13 by fmesa-or         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef GAME_H
 # define GAME_H
@@ -19,11 +19,11 @@
  * Asigns a number for each texture to simplify when called.*
  * TEXT_COUNT	-> Total number of posible textures.        *
  ***********************************************************/
-# define TEXT_NO	0
-# define TEXT_SO	1
-# define TEXT_EA	2
-# define TEXT_WE	3
-# define TEXT_COUNT	4
+# define TEXT_NO		0
+# define TEXT_SO		1
+# define TEXT_EA		2
+# define TEXT_WE		3
+# define TEXT_COUNT		4
 
 /***********************************************
  * SPECS                                       *
@@ -51,19 +51,19 @@
  ***********************************************************/
 typedef struct s_textinfo
 {
-	int		floor[3];
-	int		ceiling[3];
-	char	*no_path;
-	char	*so_path;
-	char	*we_path;
-	char	*ea_path;
-	int		has_no;
-	int		has_so;
-	int		has_ea;
-	int		has_we;
-	int		has_c;
-	int		has_f;
-} t_textinfo;
+	int					floor[3];
+	int					ceiling[3];
+	char				*no_path;
+	char				*so_path;
+	char				*we_path;
+	char				*ea_path;
+	int					has_no;
+	int					has_so;
+	int					has_ea;
+	int					has_we;
+	int					has_c;
+	int					has_f;
+}	t_textinfo;
 
 /**************************************
  * IMAGE TEXTURE                      *
@@ -74,68 +74,70 @@ typedef struct s_textinfo
  *************************************/
 typedef struct s_img_text
 {
-	mlx_image_t	*img;
-	int			width;
-	int			height;
-} t_img_text;
+	mlx_image_t			*img;
+	int					width;
+	int					height;
+}	t_img_text;
 
-/**
- * RAYS
- * 
- * rayDirX/Y	-> The direction of the ray.
- * deltaDistX/Y	-> Length for crossing one unit of the grid.
- * sideDistX/Y	-> Distance from current position to next grid line.
- * mapX/Y		-> Current grid coordinates (integer) where the ray is located.
- * stepX/Y		-> Direction to advance in the grid (-1 or +1).
- * side			-> Which wall side was hit (0=vertical, 1=horizontal).
- * drawStart	-> Top pixel to start drawing the wall line.
- * drawEnd		-> Bottom pixel to end drawing the wall line.
- */
+/*******************************************************************************
+ * RAYS                                                                        *
+ *                                                                             *
+ * raydir_x/Y		-> The direction of the ray.                               *
+ * deltadist_x/Y	-> Length for crossing one unit of the grid.               *
+ * sidedist_x/Y		-> Distance from current position to next grid line.       *
+ * map_x/Y			-> Current grid coordinates where the ray is located.      *
+ * step_x/Y			-> Direction to advance in the grid (-1 or +1).            *
+ * side				-> Which wall side was hit (0=vertical, 1=horizontal).     *
+ * draw_start		-> Top pixel to start drawing the wall line.               *
+ * draw_end			-> Bottom pixel to end drawing the wall line.              *
+ * line_height		-> Height of the wall line to be drawn on screen.          *
+ * perp_wall_dist	-> Perpendicular distance to the wall to avoid fisheye fx. *
+ ******************************************************************************/
 typedef struct s_ray
 {
-	double	rayDirX;
-	double	rayDirY;
-	double	deltaDistX;
-	double	deltaDistY;
-	double	sideDistX;
-	double	sideDistY;
-	int		mapX;
-	int		mapY;
-	int		stepX;
-	int		stepY;
-	int		side;
-	int		drawStart;
-	int		drawEnd;
-	int		lineHeight;
-	double	perpWallDist;
-} t_ray;
+	double				raydir_x;
+	double				raydir_y;
+	double				deltadist_x;
+	double				deltadist_y;
+	double				sidedist_x;
+	double				sidedist_y;
+	int					map_x;
+	int					map_y;
+	int					step_x;
+	int					step_y;
+	int					side;
+	int					draw_start;
+	int					draw_end;
+	int					line_height;
+	double				perp_wall_dist;
+}	t_ray;
 
-/***************************************************************************
- * PLAYER                                                                  *
- *                                                                         *
- *  x & y	-> Actual position in the map.                                 *
- * dirX/Y	-> Actual direction of camera.                                 *
- * planeX/Y	-> Camera plane, so we can calculate the size of the viewfield.*
- **************************************************************************/
+/*******************************************************************************
+ * PLAYER                                                                      *
+ *                                                                             *
+ *  x & y	-> Actual position in the map.                                     *
+ * dir_x/Y	-> Actual direction of camera.                                     *
+ * plane_x/Y	-> Camera plane, so we can calculate the size of the viewfield.*
+ ******************************************************************************/
 typedef struct s_player
 {
-	double		x;
-	double		y;
-	double		dirX;
-	double		dirY;
-	double		planeX;
-	double		planeY;
-} t_player;
+	double				x;
+	double				y;
+	double				dir_x;
+	double				dir_y;
+	double				plane_x;
+	double				plane_y;
+}	t_player;
 
 typedef struct s_keys
 {
-	int w_pressed;	// Avanzar
-	int s_pressed;	// Retroceder
-	int a_pressed;	// Strafe izquierda
-	int d_pressed;	// Strafe derecha
-	int left_pressed;// Mirar izquierda
-	int right_pressed;// Mirar derecha
-} t_keys;
+	int					w_pressed;
+	int					s_pressed;
+	int					a_pressed;
+	int					d_pressed;
+	int					left_pressed;
+	int					right_pressed;
+}	t_keys;
 
 /*********************************************************************
  * MAIN STRUCTURE                                                    *
@@ -153,18 +155,18 @@ typedef struct s_keys
  ********************************************************************/
 typedef struct s_game
 {
-	t_textinfo	*textures;
-	t_img_text	img_text[TEXT_COUNT];
-	char		**map;
-	int			spawn_x;
-	int			spawn_y;
-	char		spawn_dir;
-	int			max_col;
-	int			max_row;
-	t_player	player;
-	t_ray		ray;
-	mlx_image_t	*screen;
-	t_keys		keys;
-} t_game;
+	t_textinfo			*textures;
+	t_img_text			img_text[TEXT_COUNT];
+	char				**map;
+	int					spawn_x;
+	int					spawn_y;
+	char				spawn_dir;
+	int					max_col;
+	int					max_row;
+	t_player			player;
+	t_ray				ray;
+	mlx_image_t			*screen;
+	t_keys				keys;
+}	t_game;
 
-# endif
+#endif

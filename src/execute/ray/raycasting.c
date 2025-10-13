@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 13:27:16 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/10/13 20:37:37 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/14 00:48:52 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,31 @@
 /********************************************************************
  * Calculates perpendicular wall distance and line height.          *
  *                                                                  *
- * lineHeight	-> Wall height in pixels on screen.                 *
- * perpWallDist	-> Perpendicular distance to wall (avoids fish-eye).*
+ * line_height	-> Wall height in pixels on screen.                 *
+ * perp_wall_dist	-> Perpendicular distance to wall (avoids fish-eye).*
  *******************************************************************/
 static void	cu_measurer(t_data *data)
 {
 	if (data->game.ray.side == 0)
 	{
-		data->game.ray.perpWallDist = (data->game.ray.mapX
-				- data->game.player.x + (1 - data->game.ray.stepX) / 2)
-			/ data->game.ray.rayDirX;
+		data->game.ray.perp_wall_dist = (data->game.ray.map_x
+				- data->game.player.x + (1 - data->game.ray.step_x) / 2)
+			/ data->game.ray.raydir_x;
 	}
 	else
 	{
-		data->game.ray.perpWallDist = (data->game.ray.mapY - data->game.player.y
-				+ (1 - data->game.ray.stepY) / 2) / data->game.ray.rayDirY;
+		data->game.ray.perp_wall_dist = (data->game.ray.map_y
+				- data->game.player.y + (1 - data->game.ray.step_y)
+				/ 2) / data->game.ray.raydir_y;
 	}
-	data->game.ray.lineHeight = (int)(S_HEIGHT / data->game.ray.perpWallDist);
-	data->game.ray.drawStart = -data->game.ray.lineHeight / 2 + S_HEIGHT / 2;
-	if (data->game.ray.drawStart < 0)
-		data->game.ray.drawStart = 0;
-	data->game.ray.drawEnd = data->game.ray.lineHeight / 2 + S_HEIGHT / 2;
-	if (data->game.ray.drawEnd >= S_HEIGHT)
-		data->game.ray.drawEnd = S_HEIGHT - 1;
+	data->game.ray.line_height = (int)(S_HEIGHT
+			/ data->game.ray.perp_wall_dist);
+	data->game.ray.draw_start = -data->game.ray.line_height / 2 + S_HEIGHT / 2;
+	if (data->game.ray.draw_start < 0)
+		data->game.ray.draw_start = 0;
+	data->game.ray.draw_end = data->game.ray.line_height / 2 + S_HEIGHT / 2;
+	if (data->game.ray.draw_end >= S_HEIGHT)
+		data->game.ray.draw_end = S_HEIGHT - 1;
 }
 
 /*********************************************************
@@ -52,19 +54,19 @@ static void	cu_dda_cane(t_data *data)
 	hit = 0;
 	while (hit == 0)
 	{
-		if (data->game.ray.sideDistX < data->game.ray.sideDistY)
+		if (data->game.ray.sidedist_x < data->game.ray.sidedist_y)
 		{
-			data->game.ray.sideDistX += data->game.ray.deltaDistX;
-			data->game.ray.mapX += data->game.ray.stepX;
+			data->game.ray.sidedist_x += data->game.ray.deltadist_x;
+			data->game.ray.map_x += data->game.ray.step_x;
 			data->game.ray.side = 0;
 		}
 		else
 		{
-			data->game.ray.sideDistY += data->game.ray.deltaDistY;
-			data->game.ray.mapY += data->game.ray.stepY;
+			data->game.ray.sidedist_y += data->game.ray.deltadist_y;
+			data->game.ray.map_y += data->game.ray.step_y;
 			data->game.ray.side = 1;
 		}
-		if (data->game.map[data->game.ray.mapY][data->game.ray.mapX] == '1')
+		if (data->game.map[data->game.ray.map_y][data->game.ray.map_x] == '1')
 		{
 			hit = 1;
 		}
@@ -77,53 +79,53 @@ static void	cu_dda_cane(t_data *data)
  ***********************************************************/
 static void	sub_dda_sizer(t_data *data)
 {
-	if (data->game.ray.rayDirX < 0)
+	if (data->game.ray.raydir_x < 0)
 	{
-		data->game.ray.stepX = -1;
-		data->game.ray.sideDistX = (data->game.player.x - data->game.ray.mapX)
-			* data->game.ray.deltaDistX;
+		data->game.ray.step_x = -1;
+		data->game.ray.sidedist_x = (data->game.player.x - data->game.ray.map_x)
+			* data->game.ray.deltadist_x;
 	}
 	else
 	{
-		data->game.ray.stepX = 1;
-		data->game.ray.sideDistX = (data->game.ray.mapX + 1.0
-				- data->game.player.x) * data->game.ray.deltaDistX;
+		data->game.ray.step_x = 1;
+		data->game.ray.sidedist_x = (data->game.ray.map_x + 1.0
+				- data->game.player.x) * data->game.ray.deltadist_x;
 	}
-	if (data->game.ray.rayDirY < 0) 
+	if (data->game.ray.raydir_y < 0)
 	{
-		data->game.ray.stepY = -1;
-		data->game.ray.sideDistY = (data->game.player.y
-				- data->game.ray.mapY) * data->game.ray.deltaDistY;
+		data->game.ray.step_y = -1;
+		data->game.ray.sidedist_y = (data->game.player.y
+				- data->game.ray.map_y) * data->game.ray.deltadist_y;
 	}
 	else
 	{
-		data->game.ray.stepY = 1;
-		data->game.ray.sideDistY = (data->game.ray.mapY + 1.0
-				- data->game.player.y) * data->game.ray.deltaDistY;
+		data->game.ray.step_y = 1;
+		data->game.ray.sidedist_y = (data->game.ray.map_y + 1.0
+				- data->game.player.y) * data->game.ray.deltadist_y;
 	}
 }
 
 /***************************************************************************
- * Initialize DDA variables: deltaDist, sideDist, step, mapX/Y             *
+ * Initialize DDA variables: deltaDist, sideDist, step, map_x/Y             *
  *                                                                         *
- * deltaDistX/Y	-> Length ray travels for one unit step in X/Y.            *
- * sideDistX/Y	-> Distance from player to next grid line in X/Y.          *
- * stepX/Y		-> Direction to advance in grid (-1 or +1).                *
- * mapX/Y		-> Current grid coordinates (integer) where ray is located.*
+ * deltadist_x/Y	-> Length ray travels for one unit step in X/Y.            *
+ * sidedist_x/Y	-> Distance from player to next grid line in X/Y.          *
+ * step_x/Y		-> Direction to advance in grid (-1 or +1).                *
+ * map_x/Y		-> Current grid coordinates (integer) where ray is located.*
  * Note:  1e30 it's a really big number (almost infinite).                 *
  **************************************************************************/
 static void	cu_dda_sizer(t_data *data)
 {
-	if (data->game.ray.rayDirX == 0)
-		data->game.ray.deltaDistX = 1e30;
+	if (data->game.ray.raydir_x == 0)
+		data->game.ray.deltadist_x = 1e30;
 	else
-		data->game.ray.deltaDistX = fabs(1.0 / data->game.ray.rayDirX);
-	if (data->game.ray.rayDirY == 0)
-		data->game.ray.deltaDistY = 1e30;
+		data->game.ray.deltadist_x = fabs(1.0 / data->game.ray.raydir_x);
+	if (data->game.ray.raydir_y == 0)
+		data->game.ray.deltadist_y = 1e30;
 	else
-		data->game.ray.deltaDistY = fabs(1.0 / data->game.ray.rayDirY);
-	data->game.ray.mapX = (int)data->game.player.x;
-	data->game.ray.mapY = (int)data->game.player.y;
+		data->game.ray.deltadist_y = fabs(1.0 / data->game.ray.raydir_y);
+	data->game.ray.map_x = (int)data->game.player.x;
+	data->game.ray.map_y = (int)data->game.player.y;
 	sub_dda_sizer(data);
 }
 
@@ -150,10 +152,10 @@ void	cu_cast_rays(t_data *data, mlx_image_t *screen)
 	while (x < S_WIDTH)
 	{
 		camera_x = ((2 * (x / (double)S_WIDTH)) - 1);
-		data->game.ray.rayDirX = data->game.player.dirX
-			+ data->game.player.planeX * camera_x;
-		data->game.ray.rayDirY = data->game.player.dirY
-			+ data->game.player.planeY * camera_x;
+		data->game.ray.raydir_x = data->game.player.dir_x
+			+ data->game.player.plane_x * camera_x;
+		data->game.ray.raydir_y = data->game.player.dir_y
+			+ data->game.player.plane_y * camera_x;
 		cu_dda_sizer(data);
 		cu_dda_cane(data);
 		cu_measurer(data);

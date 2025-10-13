@@ -6,17 +6,16 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 20:35:22 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/08/26 20:37:22 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/14 00:21:14 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/*s = string to split | c = delimiter character.
-Return an array with the strings.
-Save an array of strings when split 's'. 
-The array must end with a NULL pointer.*/
-
+/**************************************************
+ * Frees allocated array in case of malloc fail. *
+ * Iterates backwards freeing each string.       *
+ *************************************************/
 static void	*ft_delarray(char **array, int k)
 {
 	while (k >= 0)
@@ -28,6 +27,11 @@ static void	*ft_delarray(char **array, int k)
 	return (NULL);
 }
 
+/**************************************************************
+ * Creates individual strings from source by delimiter.      *
+ * Skips delimiters and copies substrings to array slots.    *
+ * Handles memory allocation for each substring.              *
+ *************************************************************/
 static char	**ft_gears(char **array, char *s, char c, int words)
 {
 	int	i;
@@ -57,6 +61,10 @@ static char	**ft_gears(char **array, char *s, char c, int words)
 	return (array);
 }
 
+/*************************************************
+ * Counts number of words separated by delimiter.*
+ * Skips consecutive delimiters between words.   *
+ ************************************************/
 static int	ft_count(char *s, char c)
 {
 	int	words;
@@ -78,6 +86,11 @@ static int	ft_count(char *s, char c)
 	return (words);
 }
 
+/********************************************************
+ * Splits string into array of substrings by delimiter.*
+ * Allocates memory for array and calls helper funcs.  *
+ * Returns NULL-terminated array of strings.           *
+ *******************************************************/
 char	**ft_split(char const *s, char c)
 {
 	int		words;
@@ -90,21 +103,3 @@ char	**ft_split(char const *s, char c)
 	array = ft_gears(array, (char *)s, c, words);
 	return (array);
 }
-/*
-int	main(void)
-{
-	char const *s = "split  ||this|for|me|||||!|";
-	char c = '|';
-	char **result = ft_split(s, c);
-	if (result) {
-		int i = 0;
-		while (result[i])
-		{
-			printf("%s\n", result[i]);
-			i++;
-		}
-	}
-	return (0);
-}
-
-*/

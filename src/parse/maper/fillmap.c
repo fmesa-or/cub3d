@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 19:30:46 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/10/13 21:46:06 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/14 00:55:22 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static void	sub_cu_filledmaper(t_game *game, bool ***filledmap)
 		}
 	}
 	if (is_filled == false)
-		error_msg("ERROR: BAD MAP: NOT CLOSED BY WALLS");
+		error_msg("Error\nBAD MAP: NOT CLOSED BY WALLS\n");
 }
 
 /*************************************************************
@@ -89,15 +89,15 @@ void	cu_filledmaper(t_game game)
 	bool	**filledmap;
 	int		i;
 
-	filledmap = scalloc(game.max_row + 1, sizeof(bool*));
+	filledmap = scalloc(game.max_row + 1, sizeof(bool *));
 	if (!filledmap)
-		error_msg("ERROR: checkmap.c: cu_filledmaper: first scalloc failed.");
+		error_msg("Error\ncheckmap.c: cu_filledmaper: first scalloc failed.\n");
 	i = 0;
 	while (i < game.max_row)
 	{
 		filledmap[i] = scalloc(game.max_col, sizeof(bool));
 		if (!filledmap[i])
-			error_msg("ERROR: checkmap.c: cu_filledmaper: 81: scalloc failed.");
+			error_msg("Error\ncheckmap.c:cu_filledmaper:81: scalloc failed.\n");
 		i++;
 	}
 	sub_cu_filledmaper(&game, &filledmap);
