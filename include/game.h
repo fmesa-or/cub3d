@@ -38,8 +38,8 @@
 # define S_HEIGHT		1800
 # define WALL_SIZE		30
 # define FOV			60
-# define R_SPEED		0.045
-# define P_SPEED		4
+# define R_SPEED		1.5
+# define P_SPEED		3.0
 
 /************************************************************
  * TEXTURE INFO.                                            *

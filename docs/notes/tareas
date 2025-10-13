@@ -31,11 +31,11 @@ Revisar parseo de valores 															(Cris)[DONE]
 -Iniciar Player																		(Paco)[DONE]
 -Hooks controles																	(Cris)[DONE]
 -Sistema Render																		(Paco)[DONE]
--Movimiento																			(Cris)[]
+-Movimiento																			(Cris)[DONE]
 -Cargar Texturas																	(Cris)[DONE]
--Wall collisions																	()[]
+-Wall collisions																	(Cris)[DONE]
 
-
+Si pongo una solo hilera de 111 después del mapa debería dar error??
 
 PRIORIDAD PARA PACO!! Arreglar para que funcione con PNG, actualmente funciona con XPM42
 

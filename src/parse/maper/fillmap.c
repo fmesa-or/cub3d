@@ -6,12 +6,16 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 19:30:46 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/09/10 13:21:42 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/13 21:46:06 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/*******************************************************************
+ * Recursive flood fill algorithm to check if map area is enclosed.*
+ * Returns true if area is surrounded by walls, false otherwise.   *
+ ******************************************************************/
 static bool	cu_floodfill(t_game game, bool ***filledmap, int i, int j)
 {
 	bool	is_surrounded;
@@ -32,21 +36,58 @@ static bool	cu_floodfill(t_game game, bool ***filledmap, int i, int j)
 	return (is_surrounded);
 }
 
+/********************************************************
+ * Checks if tile at position (i,j) is a walkable space.*
+ * Returns true for '0', 'N', 'S', 'E', 'W' characters. *
+ *******************************************************/
 bool	cu_checktile(t_game game, int i, int j)
 {
-	if (game.map[i][j] == '0' || game.map[i][j] == 'N' || game.map[i][j] == 'S' || game.map[i][j] == 'W' || game.map[i][j] == 'E')
-		return(true);
+	if (game.map[i][j] == '0' || game.map[i][j] == 'N' || game.map[i][j] == 'S'
+			|| game.map[i][j] == 'W' || game.map[i][j] == 'E')
+		return (true);
 	else
 		return (false);
 }
 
-//La nueva función, debería ir linea a linea buscando el primer 0 y rellenando el floodfill de cada sala.
+/***********************************************************
+ * Iterates through map to find unfilled walkable tiles and*
+ * validates they are enclosed by walls using flood fill.  *
+ **********************************************************/
+static void	sub_cu_filledmaper(t_game *game, bool ***filledmap)
+{
+	int		i;
+	int		j;
+	bool	is_filled;
+
+	i = 0;
+	j = 0;
+	is_filled = true;
+	while (i < (*game).max_row && is_filled == true)
+	{
+		while ((*game).map[i][j] && ((*game).map[i][j] != '0'
+			|| (*filledmap)[i][j] == 1))
+			j++;
+		if ((*game).map[i][j] && (cu_checktile((*game), i, j))
+			&& (*filledmap)[i][j] == 0)
+			is_filled = cu_floodfill((*game), filledmap, i, j);
+		else
+		{
+			j = 0;
+			i++;
+		}
+	}
+	if (is_filled == false)
+		error_msg("ERROR: BAD MAP: NOT CLOSED BY WALLS");
+}
+
+/*************************************************************
+ * Main function to validate map closure using flood fill.   *
+ * Allocates memory for tracking, runs validation, cleans up.*
+ ************************************************************/
 void	cu_filledmaper(t_game game)
 {
 	bool	**filledmap;
-	bool	is_filled;
 	int		i;
-	int		j;
 
 	filledmap = scalloc(game.max_row + 1, sizeof(bool*));
 	if (!filledmap)
@@ -56,26 +97,12 @@ void	cu_filledmaper(t_game game)
 	{
 		filledmap[i] = scalloc(game.max_col, sizeof(bool));
 		if (!filledmap[i])
-			error_msg("ERROR: checkmap.c: cu_filledmaper: second scalloc failed.");
+			error_msg("ERROR: checkmap.c: cu_filledmaper: 81: scalloc failed.");
 		i++;
 	}
-	//aqui insertamos un bucle para que busque el primer cero que no se haya chequeado
-	i = 0;
-	j = 0;
-	is_filled = true;
-	while (i < game.max_row && is_filled == true)
-	{
-		while (game.map[i][j] && (game.map[i][j] != '0' || filledmap[i][j] == 1))
-			j++;
-		if (game.map[i][j] && (cu_checktile(game, i, j)) && filledmap[i][j] == 0)
-			is_filled = cu_floodfill(game, &filledmap, i, j);
-		else
-		{
-			j = 0;
-			i++;
-		}
-	}
-	//liberar fillempa;
-	if(is_filled == false)
-		error_msg("ERROR: BAD MAP: NOT CLOSED BY WALLS");
+	sub_cu_filledmaper(&game, &filledmap);
+	i = -1;
+	while (++i < game.max_row)
+		sfree(filledmap[i]);
+	sfree(filledmap);
 }

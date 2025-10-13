@@ -6,15 +6,21 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 20:23:11 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/09/10 13:59:24 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/13 21:31:48 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/**********************************************************
+ * Helper function to validate empty lines after map ends.*
+ * Ensures no additional map content exists after the main*
+ * map has finished.                                      *
+ *********************************************************/
 static void	cu_sub_secondmap_check(t_game game, int *i, int *j)
 {
-	if (((ft_isspace(game.map[*i][*j])) != 1) && ((game.map[*i][*j] != '\n' && game.map[*i][*j] != '\0')))
+	if (((ft_isspace(game.map[*i][*j])) != 1) && ((game.map[*i][*j] != '\n'
+			&& game.map[*i][*j] != '\0')))
 		error_msg("ERROR: TOO MANY MAPS IN VERTICAL.");
 	else
 	{
@@ -27,13 +33,15 @@ static void	cu_sub_secondmap_check(t_game game, int *i, int *j)
 	}
 }
 
-/**
- * We look for an empty row *
- */
-static void	cu_secondmap_check(t_game game)//si meto lineas vacías al final salta como que tiene demasiados mapas
+/********************************************************
+ * Validates that no additional map content exists after*
+ * the main map ends. Checks for empty rows and ensures *
+ * map integrity throughout the file.                   *
+ *******************************************************/
+static void	cu_secondmap_check(t_game game)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	bool	space_cut;
 
 	i = 0;
@@ -45,12 +53,10 @@ static void	cu_secondmap_check(t_game game)//si meto lineas vacías al final sal
 	{
 		if (space_cut == true && game.map[i] != NULL)
 			cu_sub_secondmap_check(game, &i, &j);
-		//si encontramos un espacio, revisa la fila entera
 		while (game.map[i] != NULL && (ft_isspace(game.map[i][j])) == 1)
 			j++;
-//		if (space_cut == true && (ft_isspace(game.map[i][j])) != 1)
-//			error_msg("ERROR: TOO MANY MAPS IN VERTICAL.");
-		if (game.map[i] != NULL && (game.map[i][j] == '\n' || game.map[i][j] == '\0'))
+		if (game.map[i] != NULL && (game.map[i][j] == '\n'
+			|| game.map[i][j] == '\0'))
 			space_cut = true;
 		if (space_cut == true && game.map[i] != NULL)
 			cu_sub_secondmap_check(game, &i, &j);
@@ -60,11 +66,15 @@ static void	cu_secondmap_check(t_game game)//si meto lineas vacías al final sal
 	}
 }
 
+/*********************************************************
+ * Calculates and stores maximum map dimensions.         *
+ * Finds the longest row and total number of rows in map.*
+ ********************************************************/
 static void	cu_map_size(char **map)
 {
-	int	i;
-	int	j;
-	int	max_col;
+	int		i;
+	int		j;
+	int		max_col;
 	t_data	*data;
 
 	max_col = 0;
@@ -83,14 +93,12 @@ static void	cu_map_size(char **map)
 	data->game.max_row = i;
 }
 
-/**
- * 
- */
+/******************
+ * MAIN CHECKMAPER*
+ *****************/
 void	cu_checkmap(t_data *data)
 {
-
 	cu_map_size(data->game.map);
 	cu_filledmaper(data->game);
 	cu_secondmap_check(data->game);
-
 }

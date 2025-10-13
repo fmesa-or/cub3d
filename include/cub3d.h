@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 21:01:46 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/10/01 13:56:39 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/13 20:11:07 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ uint32_t	get_hex_color(int rgb[3]);
  */
 void	cu_init_player(t_player *player, t_game *game);
 void	cu_cast_rays(t_data *data, mlx_image_t *screen);
-void	cu_picasso(t_data *data, mlx_image_t *screen, int x);
+void	cu_picasso(t_data *data, mlx_image_t *screen, int x, mlx_image_t *texture);
 
 
 
@@ -116,5 +116,28 @@ void	key_hook(mlx_key_data_t keydata, void *param);
 void	handle_key_release(t_game *game, int key);
 void	handle_key_press(t_game *game, int key);
 
+/**
+ * MOVEMENT LOOP
+ */
+void	movement_loop(void *param);
+int		process_movement(t_data *data, double delta_time);
+int		process_rotation(t_data *data, double delta_time);
+
+/**
+ * MOVEMENT FUNCTIONS
+ */
+void	move_forward(t_data *data, double delta_time);
+void	move_backward(t_data *data, double delta_time);
+void	strafe_left(t_data *data, double delta_time);
+void	strafe_right(t_data *data, double delta_time);
+void	look_left(t_data *data, double delta_time);
+void	look_right(t_data *data, double delta_time);
+
+/**
+ * MOVEMENT UTILS
+ */
+int	 check_wall_collision(t_data *data, double new_x, double new_y);
+void	move_player_safe(t_data *data, double new_x, double new_y);
+void	rotate_player(t_data *data, double angle);
 
 #endif

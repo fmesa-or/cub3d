@@ -6,13 +6,16 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 11:47:06 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/09/08 20:04:47 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/13 20:48:39 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-
+/*************************************************
+ * Safe exit that closes all file descriptors and*
+ * frees all tracked memory before exiting.      *
+ ************************************************/
 void	sexit(int code)
 {
 	sclose(STDIN_FILENO);
@@ -23,23 +26,22 @@ void	sexit(int code)
 	exit(code);
 }
 
+/**************************************************
+ * Handles allocation failures by printing error  *
+ * messages and performing safe exit with cleanup.*
+ *************************************************/
 void	alloc_fail(int type)
 {
 	if (type == NO_MEMORY)
-		write(2, "CATASTROPHIC - No memory left on the device\n", 45);
-	if (type == DUP_FAIL)
-		write(2, "CATASTROPHIC - Error duplicating file descriptor\n", 50);
-	if (type == DUP2_FAIL)
-		write(2, "CATASTROPHIC - Error duplicating file descriptor\n", 50);
-	if (type == PIPE_FAIL)
-		write(2, "CATASTROPHIC - Pipe failed\n", 28);
+		error_msg("ERROR\nVMEM: No memory left on the device\n");
 	sexit(1);
 }
 
-/****************************************************
-*When called with data, stores it in a static.access*
-*When called with NULL, returns data.               *
-****************************************************/
+/*****************************************************
+ * Global data accessor using static variable.     *
+ * Stores data when called with parameter, returns *
+ * stored data when called with NULL.               *
+ ****************************************************/
 t_data	*get_pdata(t_data *data)
 {
 	static t_data	*pdata;
@@ -49,9 +51,10 @@ t_data	*get_pdata(t_data *data)
 	return (pdata);
 }
 
-/************************************************
-*Sets the memory for b pointer with int c value.*
-************************************************/
+/*****************************************************
+ * Sets memory area to specified value byte by    *
+ * byte. Custom implementation of memset.          *
+ ****************************************************/
 void	*ft_memset(void *b, int c, int len)
 {
 	unsigned char	*p;
@@ -62,6 +65,10 @@ void	*ft_memset(void *b, int c, int len)
 	return (b);
 }
 
+/*****************************************************
+ * Zeros out memory area. Custom implementation of  *
+ * bzero function for memory initialization.        *
+ ****************************************************/
 void	*ft_bzero(void *s, size_t n)
 {
 	size_t	i;
@@ -80,20 +87,3 @@ void	*ft_bzero(void *s, size_t n)
 	}
 	return (0);
 }
-
-
-/*
-char	*get_cwd(void)
-{
-	char	*tmp;
-	char	*path;
-
-	tmp = getcwd(NULL, 0);
-	if (!tmp)
-		return (NULL);
-	path = ft_strdup(tmp);
-	free(tmp);
-	if (!path)
-		alloc_fail(NO_MEMORY);
-	return (path);
-}*/

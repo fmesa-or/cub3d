@@ -6,22 +6,26 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:29:47 by crmorale          #+#    #+#             */
-/*   Updated: 2025/09/30 13:18:04 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/13 21:55:42 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/***********************************************************
+ * Converts string to integer with RGB validation rules.  *
+ * Returns -1 for invalid format, signs, or overflow.     *
+ **********************************************************/
 int	ft_atoi_rgb(const char *str)
 {
 	int	i;
 	int	result;
-	
+
 	i = 0;
 	result = 0;
-	while(str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
 		i++;
-	if (str[i] == '\0') //para string vacíos o sólo espacios
+	if (str[i] == '\0')
 		return (-1);
 	if (str[i] == '-' || str[i] == '+')
 		return (-1);
@@ -32,69 +36,65 @@ int	ft_atoi_rgb(const char *str)
 		result = result * 10 + str[i] - 48;
 		i++;
 	}
-	// Skip trailing whitespace
-	while(str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
 		i++;
 	if (str[i] != '\0')
 		return (-1);
 	return (result);
 }
 
+/***********************************************************
+ * Validates if integer is within valid RGB range (0-255).*
+ * Returns 1 if valid, 0 if outside RGB boundaries.       *
+ **********************************************************/
 int	valid_rgb_value(int n)
 {
 	return (n >= 0 && n <= 255);
 }
 
-static uint32_t	rgb_to_hex(int r, int g, int b)
+/**************************************************************
+ * Parses three RGB components from split string array.      *
+ * Validates each value and stores in rgb array if valid.    *
+ *************************************************************/
+static int	sub_parse_rgb_line(char ***parts, int rgb[3])
 {
-	return ((r << 24) | (g << 16) | (b << 8) | 0xFF);
-}
+	int	i;
 
-	/*LLAMAR a get_hex_color desde la que lo necesitemos del siguiente modo:
-	
-		uint32_t floor_color = get_color(game->textures->floor);
-		uint32_t floor_ceiling = get_color(game->textures->ceiling);
-	*/
-
-uint32_t	get_hex_color(int rgb[3])
-{
-	return (rgb_to_hex(rgb[0], rgb[1], rgb[2]));
-}
-
-	
-/**
- * 
- */
-int	parse_rgb_line(char *line, int rgb[3])
-{
-	char	**parts;
-	int		i;
-
-	// saltar espacios
-	while ((*line >= 9 && *line <= 13) || *line == 32)
-		line++;
-	// dividir por coma
-	parts = ft_split(line, ','); //añadir split
-	if (!parts)
-		return (0);
-	// comprobar que hay exactamente 3 valores
 	i = 0;
 	while (i < 3)
 	{
-		if (!parts[i])
+		if (!(*parts)[i])
 		{
-			ft_sfree_split(parts);
+			ft_sfree_split((*parts));
 			return (0);
 		}
-		rgb[i] = ft_atoi_rgb(parts[i]);
+		rgb[i] = ft_atoi_rgb((*parts)[i]);
 		if (!valid_rgb_value(rgb[i]))
 		{
-			ft_sfree_split(parts);
+			ft_sfree_split((*parts));
 			return (0);
 		}
 		i++;
 	}
-	if (parts[3]) // más de 3 valores -> error
+	return (1);
+}
+
+/**************************************************************
+ * Parses RGB color line in format "R,G,B" from config file.*
+ * Splits by comma and validates exactly three RGB values.   *
+ *************************************************************/
+int	parse_rgb_line(char *line, int rgb[3])
+{
+	char	**parts;
+
+	while ((*line >= 9 && *line <= 13) || *line == 32)
+		line++;
+	parts = ft_split(line, ',');
+	if (!parts)
+		return (0);
+	if (sub_parse_rgb_line(&parts, rgb) == 0)
+		return (0);
+	if (parts[3])
 	{
 		ft_sfree_split(parts);
 		return (0);

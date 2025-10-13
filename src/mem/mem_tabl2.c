@@ -6,12 +6,16 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 11:46:55 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/08/19 15:48:52 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/13 20:47:09 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/***************************************************
+ * Safe close wrapper that removes fd from tracking*
+ * table and closes the file descriptor.           *
+ **************************************************/
 int	sclose(int fd)
 {
 	t_data	*data;
@@ -23,6 +27,10 @@ int	sclose(int fd)
 	return (close(fd));
 }
 
+/**************************************************
+ * Closes all tracked file descriptors and clears *
+ * the fd table. Used for cleanup on program exit.*
+ *************************************************/
 void	sclose_all(void)
 {
 	t_data	*data;
@@ -42,50 +50,3 @@ void	sclose_all(void)
 		fd++;
 	}
 }
-/*
-int	sdup(int fd)
-{
-	t_data	*data;
-	int		new_fd;
-
-	data = get_pdata(NULL);
-	if (!data || fd < 0)
-		return (-1);
-	new_fd = dup(fd);
-	if (new_fd == -1)
-		alloc_fail(DUP_FAIL);
-	data->fd_table[new_fd] = 1;
-	return (new_fd);
-}
-
-int	sdup2(int fd1, int fd2)
-{
-	t_data	*data;
-	int		new_fd;
-
-	data = get_pdata(NULL);
-	new_fd = -1;
-	if (!data || fd1 == -1)
-		return (new_fd);
-	if (fd1 == fd2)
-		return (0);
-	new_fd = dup2(fd1, fd2);
-	if (new_fd == -1)
-		alloc_fail(DUP2_FAIL);
-	data->fd_table[new_fd] = 1;
-	return (new_fd);
-}
-
-int	spipe(int *fd)
-{
-	t_data	*data;
-
-	data = get_pdata(NULL);
-	if (!data)
-		return (1);
-	if (pipe(fd) == -1)
-		alloc_fail(PIPE_FAIL);
-	data->fd_table[fd[0]] = 1;
-	data->fd_table[fd[1]] = 1;
-	return (0);
-}*/

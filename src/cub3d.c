@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crmorale <crmorale@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 21:01:23 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/10/01 14:11:39 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/03 21:36:15 by crmorale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	cu_render(t_data *data)
 	data->game.screen = mlx_new_image(data->mlx, S_WIDTH, S_HEIGHT);
 	if (!data->game.screen)
 	{
-		fprintf(stderr, "Error: Failed to create screen image.\n");
+		fprintf(stderr, "Error\nFailed to create screen image.\n");
 		mlx_terminate(data->mlx);
 		return (-1);
 	}
@@ -30,7 +30,7 @@ static int	cu_render(t_data *data)
 	// 3. Mostrar la imagen en la ventana
 	if (mlx_image_to_window(data->mlx, data->game.screen, 0, 0) == -1)
 	{
-		fprintf(stderr, "Error: Failed to put image to window.\n");
+		fprintf(stderr, "Error\nFailed to put image to window.\n");
 		mlx_terminate(data->mlx);
 		return (-1);
 	}
@@ -68,6 +68,7 @@ int	main(int ac, char **av)
 
 	// 7. Configurar hooks y ejecutar loop principal
 	mlx_key_hook(data.mlx, key_hook, &data);
+	mlx_loop_hook(data.mlx, movement_loop, &data);
 	mlx_loop(data.mlx);
 	// Cleanup MLX42 internals
 	mlx_terminate(data.mlx);

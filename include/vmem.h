@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 21:16:58 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/09/16 19:42:54 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/13 20:48:26 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,5 @@ void	sfree_all(void);
 void	mem_clear(void);
 void	*ft_memset(void *b, int c, int len);
 void	*ft_bzero(void *s, size_t n);
-//int		spipe(int *fd);
-//int		sdup2(int fd1, int fd2);
-//int		sdup(int fd);
-//char	*get_cwd(void);
 
 #endif
