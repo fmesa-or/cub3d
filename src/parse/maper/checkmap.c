@@ -6,14 +6,11 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 20:23:11 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/10/20 13:59:59 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/20 18:02:50 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-
-
 
 /**********************************************************
  * Helper function to validate empty lines after map ends.*

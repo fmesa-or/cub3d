@@ -6,7 +6,7 @@
 #    By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/30 20:48:10 by fmesa-or          #+#    #+#              #
-#    Updated: 2025/09/25 13:03:31 by fmesa-or         ###   ########.fr        #
+#    Updated: 2025/10/20 18:01:54 by fmesa-or         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,41 @@ CLEAN		:= rm -Rf
 
 #Sources
 SRCS_DIR	:= src
-SRCS		:= $(shell find $(SRCS_DIR) -name "*.c")
+SRCS		:= $(SRCS_DIR)/cub3d.c \
+			   $(SRCS_DIR)/execute/draw/picasso.c \
+			   $(SRCS_DIR)/execute/movement/key_hooks.c \
+			   $(SRCS_DIR)/execute/movement/move_functions.c \
+			   $(SRCS_DIR)/execute/movement/move_hooks.c \
+			   $(SRCS_DIR)/execute/movement/move_utils2.c \
+			   $(SRCS_DIR)/execute/movement/move_utils.c \
+			   $(SRCS_DIR)/execute/player/player.c \
+			   $(SRCS_DIR)/execute/ray/raycasting.c \
+			   $(SRCS_DIR)/libft/ft_isspace.c \
+			   $(SRCS_DIR)/libft/ft_sfree_split.c \
+			   $(SRCS_DIR)/libft/ft_split.c \
+			   $(SRCS_DIR)/libft/ft_strchr.c \
+			   $(SRCS_DIR)/libft/ft_strlcpy.c \
+			   $(SRCS_DIR)/libft/ft_strlen.c \
+			   $(SRCS_DIR)/libft/ft_strncmp.c \
+			   $(SRCS_DIR)/mem/mem_man.c \
+			   $(SRCS_DIR)/mem/mem_tabl2.c \
+			   $(SRCS_DIR)/mem/mem_tabl.c \
+			   $(SRCS_DIR)/mem/mem_utils.c \
+			   $(SRCS_DIR)/parse/error.c \
+			   $(SRCS_DIR)/parse/filer/check_file.c \
+			   $(SRCS_DIR)/parse/filer/readfile.c \
+			   $(SRCS_DIR)/parse/gnl/gnl.c \
+			   $(SRCS_DIR)/parse/gnl/gnl_utils.c \
+			   $(SRCS_DIR)/parse/maper/checkmap.c \
+			   $(SRCS_DIR)/parse/maper/fillmap.c \
+			   $(SRCS_DIR)/parse/maper/get_colors.c \
+			   $(SRCS_DIR)/parse/maper/get_hex_colors.c \
+			   $(SRCS_DIR)/parse/maper/get_textures.c \
+			   $(SRCS_DIR)/parse/maper/get_textures_utils.c \
+			   $(SRCS_DIR)/parse/maper/init_textures.c \
+			   $(SRCS_DIR)/parse/maper/load_textures.c \
+			   $(SRCS_DIR)/parse/maper/parse_map.c \
+			   $(SRCS_DIR)/parse/whole_parse.c
 
 #Objects
 OBJS_DIR	:= obj
