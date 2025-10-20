@@ -6,11 +6,32 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:42:11 by crmorale          #+#    #+#             */
-/*   Updated: 2025/10/20 12:05:23 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/20 14:20:00 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+/*******************************************
+ * Checks the Player is inside of the maze.*
+ ******************************************/
+static void	cu_check_pj(t_game *game, int i, int j)
+{
+	if (i <= 0 || j <= 0)
+		error_msg("Error\nBad PJ position.\n");
+	if (!game->map[i][j])
+		error_msg("Error\nMap lost!.\n");
+	if (game->map[i - 1][j] > '1' && game->map[i - 1][j] < '0')
+		error_msg("Error\nBad PJ position.\n");
+	if (!game->map[i + 1] || (game->map[i + 1][j] > '1'
+		&& game->map[i + 1][j] < '0'))
+		error_msg("Error\nBad PJ position.\n");
+	if (game->map[i][j - 1] > '1' && game->map[i][j - 1] < '0')
+		error_msg("Error\nBad PJ position.\n");
+	if (game->map[i][j + 1] || (game->map[i][j + 1] > '1'
+		&& game->map[i][j + 1] < '0'))
+		error_msg("Error\nBad PJ position.\n");
+}
 
 /*********************************************************
  * Saves player spawn position and direction in game.   *
@@ -18,6 +39,7 @@
  ********************************************************/
 void	save_player_pos(int i, int j, char dir, t_game *game)
 {
+	cu_check_pj(game, i, j);
 	game->spawn_x = j;
 	game->spawn_y = i;
 	game->spawn_dir = dir;
