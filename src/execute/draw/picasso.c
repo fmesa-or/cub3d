@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 14:36:00 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/10/14 00:56:20 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/20 13:44:45 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,15 @@ static int	cu_gouel(t_data *data, mlx_image_t *texture)
 	{
 		wall_x = data->game.player.y + data->game.ray.perp_wall_dist
 			* data->game.ray.raydir_y;
+		if (data->game.ray.raydir_x < 0)
+			wall_x = -wall_x;
 	}
 	else
 	{
 		wall_x = data->game.player.x + data->game.ray.perp_wall_dist
 			* data->game.ray.raydir_x;
+		if (data->game.ray.raydir_y > 0)
+			wall_x = -wall_x;
 	}
 	wall_x -= floor(wall_x);
 	tex_x = (int)(wall_x * texture->width);
@@ -65,14 +69,14 @@ static mlx_image_t	*cu_olivier(t_data *data, mlx_image_t *texture)
 {
 	if (data->game.ray.side == 0)
 	{
-		if (data->game.ray.raydir_x > 0)
+		if (data->game.ray.raydir_x < 0)
 			texture = data->game.img_text[TEXT_EA].img;
 		else
 			texture = data->game.img_text[TEXT_WE].img;
 	}
 	else
 	{
-		if (data->game.ray.raydir_y > 0)
+		if (data->game.ray.raydir_y < 0)
 			texture = data->game.img_text[TEXT_SO].img;
 		else
 			texture = data->game.img_text[TEXT_NO].img;
