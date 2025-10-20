@@ -1,0 +1,11 @@
+F 200,135,25
+C 010,150, 200
+
+NO textures/lemur.png
+SO textures/calamardo.png
+WE textures/lemur.png
+EA textures/lemur.png
+
+111
+1S1
+111

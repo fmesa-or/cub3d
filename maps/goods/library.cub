@@ -1,10 +1,10 @@
-F 139,99,58
-C 171,154,137
+F 200,135,25
+C 010,150, 200
 
-NO textures/bookshelf.xpm
-SO textures/bookshelf_01.xpm
-WE textures/bookshelf_02.xpm
-EA textures/bookshelf_03.xpm
+NO textures/gato.png
+SO textures/cal_paj.png
+WE textures/lemur.png
+EA textures/calamardo.png
 
 1111111111111111111
 1001001001001001001

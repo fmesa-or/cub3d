@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 00:34:02 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/10/14 00:48:13 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/20 17:03:48 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,16 +129,6 @@ typedef struct s_player
 	double				plane_y;
 }	t_player;
 
-typedef struct s_keys
-{
-	int					w_pressed;
-	int					s_pressed;
-	int					a_pressed;
-	int					d_pressed;
-	int					left_pressed;
-	int					right_pressed;
-}	t_keys;
-
 /*********************************************************************
  * MAIN STRUCTURE                                                    *
  *                                                                   *
@@ -152,6 +142,8 @@ typedef struct s_keys
  * player		-> Struct with player info.                          *
  * ray			-> Ray struct.                                       *
  * screen		-> Where we draw.                                    *
+ * win_width	-> Current window width (for resize handling).       *
+ * win_height	-> Current window height (for resize handling).      *
  ********************************************************************/
 typedef struct s_game
 {
@@ -166,7 +158,20 @@ typedef struct s_game
 	t_player			player;
 	t_ray				ray;
 	mlx_image_t			*screen;
-	t_keys				keys;
+	int					win_width;
+	int					win_height;
 }	t_game;
+
+/****************************************************
+ * Struct for move_hooks.c: process_movement values.*
+ ***************************************************/
+typedef struct s_movement
+{
+	double				speed;
+	double				move_x;
+	double				move_y;
+	double				new_x;
+	double				new_y;
+}	t_movement;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 14:36:00 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/10/20 13:44:45 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/20 16:50:18 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static int	cu_maar(int y, t_data *data, mlx_image_t *texture)
 {
 	int	tex_y;
 
-	tex_y = (int)((y - S_HEIGHT / 2 + data->game.ray.line_height / 2)
+	tex_y = (int)((y - data->game.win_height / 2
+				+ data->game.ray.line_height / 2)
 			* texture->height / data->game.ray.line_height);
 	if (tex_y >= (int)texture->height)
 		tex_y = texture->height - 1;
@@ -86,6 +87,16 @@ static mlx_image_t	*cu_olivier(t_data *data, mlx_image_t *texture)
 	return (texture);
 }
 
+static uint32_t	sub_cu_picasso(mlx_image_t *txt, int tex_x, int tex_y)
+{
+	uint32_t	color;
+
+	color = ((uint32_t *)txt->pixels)[tex_y * txt->width + tex_x];
+	color = ((color & 0xFF) << 24) | ((color & 0xFF00) << 8)
+		| ((color & 0xFF0000) >> 8) | ((color & 0xFF000000) >> 24);
+	return (color);
+}
+
 /**************************************************************
  * Draws vertical wall line from draw_start to draw_end.        *
  * Finds the X & Y coordinate inside the texture.             *
@@ -110,11 +121,11 @@ void	cu_picasso(t_data *dat, mlx_image_t *scrn, int x, mlx_image_t *txt)
 	while (y <= dat->game.ray.draw_end)
 	{
 		tex_y = cu_maar(y, dat, txt);
-		color = ((uint32_t *)txt->pixels)[tex_y * txt->width + tex_x];
+		color = sub_cu_picasso(txt, tex_x, tex_y);
 		mlx_put_pixel(scrn, x, y, color);
 		y++;
 	}
-	while (y < S_HEIGHT)
+	while (y < dat->game.win_height)
 	{
 		mlx_put_pixel(scrn, x, y, get_hex_color(dat->game.textures->floor));
 		y++;

@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 21:01:23 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/10/14 00:52:15 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/20 16:50:17 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 static int	cu_render(t_data *data)
 {
 	load_text(data);
+	data->game.win_width = S_WIDTH;
+	data->game.win_height = S_HEIGHT;
 	data->game.screen = mlx_new_image(data->mlx, S_WIDTH, S_HEIGHT);
 	if (!data->game.screen)
 	{

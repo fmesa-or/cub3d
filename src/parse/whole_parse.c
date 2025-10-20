@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:42:11 by crmorale          #+#    #+#             */
-/*   Updated: 2025/10/20 14:20:00 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/20 17:11:45 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,17 @@ static void	cu_check_pj(t_game *game, int i, int j)
 		error_msg("Error\nBad PJ position.\n");
 	if (!game->map[i][j])
 		error_msg("Error\nMap lost!.\n");
-	if (game->map[i - 1][j] > '1' && game->map[i - 1][j] < '0')
-		error_msg("Error\nBad PJ position.\n");
-	if (!game->map[i + 1] || (game->map[i + 1][j] > '1'
-		&& game->map[i + 1][j] < '0'))
-		error_msg("Error\nBad PJ position.\n");
-	if (game->map[i][j - 1] > '1' && game->map[i][j - 1] < '0')
-		error_msg("Error\nBad PJ position.\n");
-	if (game->map[i][j + 1] || (game->map[i][j + 1] > '1'
-		&& game->map[i][j + 1] < '0'))
-		error_msg("Error\nBad PJ position.\n");
+	if (game->map[i - 1][j] > '1' || game->map[i - 1][j] < '0')
+		error_msg("Error\nBad PJ position1.\n");
+	if (!game->map[i + 1] || !(game->map[i + 1][j] <= '1'
+		&& game->map[i + 1][j] >= '0'))
+		error_msg("Error\nBad PJ position2.\n");
+	if (game->map[i][j - 1] > '1' || game->map[i][j - 1] < '0')
+		error_msg("Error\nBad PJ position3.\n");
+	if (!game->map[i][j + 1] || !(game->map[i][j + 1] <= '1'
+		&& game->map[i][j + 1] >= '0'))
+		error_msg("Error\nBad PJ position4.\n");
+	printf("CHECK\n");
 }
 
 /*********************************************************
