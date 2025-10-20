@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 20:23:11 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/10/14 00:55:46 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/20 12:30:19 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ static void	cu_secondmap_check(t_game game)
 	i = 0;
 	j = 0;
 	space_cut = false;
-	while (game.map[i] != NULL && (ft_isspace(game.map[i][j])) != 1)
-		i++;
 	while (game.map[i] != NULL)
 	{
 		if (space_cut == true && game.map[i] != NULL)
@@ -58,8 +56,6 @@ static void	cu_secondmap_check(t_game game)
 		if (game.map[i] != NULL && (game.map[i][j] == '\n'
 			|| game.map[i][j] == '\0'))
 			space_cut = true;
-		if (space_cut == true && game.map[i] != NULL)
-			cu_sub_secondmap_check(game, &i, &j);
 		if (game.map[i] != NULL)
 			i++;
 		j = 0;
