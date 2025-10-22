@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 19:30:46 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/10/14 00:55:22 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/22 20:57:23 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static void	sub_cu_filledmaper(t_game *game, bool ***filledmap)
 		}
 	}
 	if (is_filled == false)
-		error_msg("Error\nBAD MAP: NOT CLOSED BY WALLS\n");
+		error_msg("Error\nBAD MAP: NOT CLOSED BY WALLS.\n");
 }
 
 /*************************************************************

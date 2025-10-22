@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 20:35:22 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/10/14 00:21:14 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/22 21:27:34 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,11 @@ static int	ft_count(char *s, char c)
 				i++;
 		}
 		while (s[i] == c && s[i])
+		{
+			if (s[i + 1] == c)
+				error_msg("Error\nJust one colon at the time.\n");
 			i++;
+		}
 	}
 	return (words);
 }

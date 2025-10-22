@@ -6,7 +6,7 @@
 #    By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/30 20:48:10 by fmesa-or          #+#    #+#              #
-#    Updated: 2025/10/20 18:01:54 by fmesa-or         ###   ########.fr        #
+#    Updated: 2025/10/22 20:25:21 by fmesa-or         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -98,7 +98,7 @@ $(COLOR_RESET)
 endef
 export HEADER_ART
 
-all: header $(NAME)
+all: $(NAME)
 
 header:
 	@echo "$$HEADER_ART"

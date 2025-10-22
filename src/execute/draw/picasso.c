@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 14:36:00 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/10/20 16:50:18 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/22 20:15:56 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ static uint32_t	sub_cu_picasso(mlx_image_t *txt, int tex_x, int tex_y)
 }
 
 /**************************************************************
- * Draws vertical wall line from draw_start to draw_end.        *
+ * Draws vertical wall line from draw_start to draw_end.      *
  * Finds the X & Y coordinate inside the texture.             *
  * Draws the ceiling.                                         *
  * Draws every Y pixel from the X coordinate from the texture.*

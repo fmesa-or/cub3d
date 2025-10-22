@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 15:19:04 by crmorale          #+#    #+#             */
-/*   Updated: 2025/10/13 22:39:51 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/22 20:57:44 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ static int	sub_parse_textures(int flag, t_textinfo *tex, char **line)
 	else if (flag == 5)
 	{
 		if (!parse_rgb_line((*line) + 1, tex->floor))
-			error_msg("Error:\nInvalid floor colour value.\n");
+			error_msg("Error\nInvalid floor colour value.\n");
 	}
 	else if (flag == 6)
 	{
 		if (!parse_rgb_line((*line) + 1, tex->ceiling))
-			error_msg("Error:\nInvalid ceiling colour value.\n");
+			error_msg("Error\nInvalid ceiling colour value.\n");
 	}
 	return (1);
 }

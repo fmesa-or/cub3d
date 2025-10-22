@@ -17,8 +17,8 @@
 -Hacer una función general que llame al parseo, para agrupar todo en orden.			(Cris)[DONE]
 -Hacer función Final_text_check tipo void (y poner error_msg al comprobar si valid_tex != 1)
 -Crear calloc con smalloc y revisar todas las notas puercas que has hecho Paquito	(Paco)[DONE]
--REvisar mensajes de error de error_msg según subject.								(TBA)
--Inicializar Estructuras															(TBA)
+-REvisar mensajes de error de error_msg según subject.								(Paco)[DONE]
+-Inicializar Estructuras															(Cris)[DONE]
 -Arreglar Checker y Floodfill														(Paco)[DONE]
 ***-Rompe al ejecutar, sospechamos que es el parse_textures***						(Paco)[DONE]
 
@@ -34,21 +34,3 @@ Revisar parseo de valores 															(Cris)[DONE]
 -Movimiento																			(Cris)[DONE]
 -Cargar Texturas																	(Cris)[DONE]
 -Wall collisions																	(Cris)[DONE]
-
-Si pongo una solo hilera de 111 después del mapa debería dar error??
-
-PRIORIDAD PARA PACO!! Arreglar para que funcione con PNG, actualmente funciona con XPM42
-
-
-
-
-
-
-
-
-
--Lanzar rayo
--Medir colision
--pintar rayo
--siguiente rayo hasta terminar
--renderizar dibujo en pantalla
