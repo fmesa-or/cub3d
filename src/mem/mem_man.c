@@ -6,12 +6,16 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 17:53:35 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/08/13 17:53:38 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/13 20:41:46 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/**************************************************
+ * Generates hash index from pointer address using*
+ * bit manipulation for uniform distribution.     *
+ *************************************************/
 static unsigned int	hash_index_ptr(void *ptr)
 {
 	unsigned long	addr;
@@ -26,6 +30,10 @@ static unsigned int	hash_index_ptr(void *ptr)
 	return (addr % MEM_HASH_SIZE);
 }
 
+/*************************************************
+ * Searches for memory node in hash table by ptr.*
+ * Returns node if found, NULL otherwise.        *
+ ************************************************/
 static t_mem	*mem_find(void *ptr)
 {
 	t_data	*data;
@@ -44,6 +52,10 @@ static t_mem	*mem_find(void *ptr)
 	return (NULL);
 }
 
+/********************************************
+ * Adds new memory pointer to hash table.   *
+ * Updates existing node or creates new one.*
+ *******************************************/
 void	mem_add(void *ptr)
 {
 	t_data			*data;
@@ -72,6 +84,10 @@ void	mem_add(void *ptr)
 	}
 }
 
+/************************************************
+ * Removes memory node from hash table and frees*
+ * both the stored pointer and the node itself. *
+ ***********************************************/
 void	mem_delete(void *ptr)
 {
 	t_data			*data;
@@ -101,6 +117,10 @@ void	mem_delete(void *ptr)
 	free(ptr);
 }
 
+/***********************************************
+ * Clears entire memory hash table, freeing all*
+ * stored pointers and nodes. Used for cleanup.*
+ **********************************************/
 void	mem_clear(void)
 {
 	t_data			*data;

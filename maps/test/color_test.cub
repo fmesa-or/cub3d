@@ -1,0 +1,11 @@
+F 0,255,0
+C 0,0 ,255
+
+NO textures/color_test.png
+SO textures/color_test.png
+WE textures/color_test.png
+EA textures/color_test.png
+
+111111
+1N0001
+111111
