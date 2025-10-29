@@ -6,7 +6,7 @@
 /*   By: fmesa-or <fmesa-or@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 19:30:46 by fmesa-or          #+#    #+#             */
-/*   Updated: 2025/10/22 20:57:23 by fmesa-or         ###   ########.fr       */
+/*   Updated: 2025/10/29 09:32:05 by fmesa-or         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static bool	cu_floodfill(t_game game, bool ***filledmap, int i, int j)
 		return (false);
 	if (game.map[i][j] == '1' || (*filledmap)[i][j] == true)
 		return (true);
+	if (game.map[i][j] == ' ')
+		error_msg("Error\nSpaces are not supouse to be there\n");
 	else
 		(*filledmap)[i][j] = true;
 	is_surrounded = true;
